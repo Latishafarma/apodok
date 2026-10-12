@@ -1,0 +1,1289 @@
+{
+  "patients": [
+    {
+      "id": 1791738855511,
+      "noRM": "9682",
+      "nama": "NY. ESDIANA",
+      "tglLahir": "1986-01-01",
+      "jk": "Perempuan",
+      "alamat": "GAJAH MATI",
+      "telepon": "-",
+      "alergi": "Tidak ada",
+      "diagnosa": "HIPERTENSI"
+    },
+    {
+      "id": 1791739282067,
+      "noRM": "1811025012830004",
+      "nama": "NY SITI YULAIKAH",
+      "tglLahir": "1983-12-10",
+      "jk": "Perempuan",
+      "alamat": "PANGKAL MAS MULYA",
+      "telepon": "-",
+      "alergi": "Tidak ada",
+      "diagnosa": "HIPERTENSI"
+    }
+  ],
+  "akseptor": [
+    {
+      "nik": "1602155203801005",
+      "nama": "ALIYAH",
+      "suami": "-",
+      "tglLahir": "1980-03-11",
+      "alamat": "GAJAH MUKTI, KEC SUNGAI MENANG",
+      "telp": "-"
+    },
+    {
+      "nik": "8018",
+      "nama": "AMEL YULANDA",
+      "suami": "-",
+      "tglLahir": "2003-08-19",
+      "alamat": "SP8 MUARA",
+      "telp": "82183207608"
+    },
+    {
+      "nik": "9239",
+      "nama": "ANELITA",
+      "suami": "-",
+      "tglLahir": "1996-11-13",
+      "alamat": "TR1A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "10438",
+      "nama": "ANI ASIH",
+      "suami": "-",
+      "tglLahir": "1978-04-03",
+      "alamat": "GAJAH MATI SP 4",
+      "telp": "-"
+    },
+    {
+      "nik": "9999",
+      "nama": "ANIAH",
+      "suami": "SODRIK",
+      "tglLahir": "1980-12-31",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1602156510880003",
+      "nama": "AZIZA",
+      "suami": "-",
+      "tglLahir": "1988-10-24",
+      "alamat": "TR 7 B TANJUNG MAS REJO",
+      "telp": "85217340981"
+    },
+    {
+      "nik": "7848",
+      "nama": "BELLA MAYRATNO",
+      "suami": "-",
+      "tglLahir": "1997-12-31",
+      "alamat": "TR7B TANJUNG MAS MRES",
+      "telp": "-"
+    },
+    {
+      "nik": "1288",
+      "nama": "BENAYANI",
+      "suami": "-",
+      "tglLahir": "1976-08-11",
+      "alamat": "SUNGAI CAMBAI",
+      "telp": "-"
+    },
+    {
+      "nik": "10472",
+      "nama": "DARILA",
+      "suami": "PUJI",
+      "tglLahir": "1988-12-31",
+      "alamat": "SWAKARSA",
+      "telp": "-"
+    },
+    {
+      "nik": "9367",
+      "nama": "DEFISA",
+      "suami": "ROY",
+      "tglLahir": "2003-12-18",
+      "alamat": "TR 4 A TANJUNG MAS MAKMUR",
+      "telp": "85325809701"
+    },
+    {
+      "nik": "8411",
+      "nama": "DEWI",
+      "suami": "REMANTO",
+      "tglLahir": "1987-09-03",
+      "alamat": "TR3A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "1704075208890001",
+      "nama": "DEWI MUHALIMAH",
+      "suami": "-",
+      "tglLahir": "1989-08-11",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "10366",
+      "nama": "DIAN",
+      "suami": "HERI",
+      "tglLahir": "1992-12-31",
+      "alamat": "PANGKL MAS",
+      "telp": "-"
+    },
+    {
+      "nik": "9420",
+      "nama": "DIAN KRISTANTI",
+      "suami": "-",
+      "tglLahir": "1998-03-04",
+      "alamat": "GAJAH MUKTI",
+      "telp": "-"
+    },
+    {
+      "nik": "1809074712930004",
+      "nama": "DISTI DWISTIKA",
+      "suami": "NIKO EVENDI SAPUTRA",
+      "tglLahir": "1993-12-06",
+      "alamat": "WONOSARI",
+      "telp": "85268483236"
+    },
+    {
+      "nik": "8589",
+      "nama": "EIS NUR HOLIPAH",
+      "suami": "OSEP NAHDIYIN",
+      "tglLahir": "1996-06-06",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1602154211051008",
+      "nama": "EKA NURLAILA NOVA SAFITRI",
+      "suami": "-",
+      "tglLahir": "2005-11-01",
+      "alamat": "BLOK A GAJAH MUKTI",
+      "telp": "-"
+    },
+    {
+      "nik": "10188",
+      "nama": "ENI PRIYANTI",
+      "suami": "ALI ASIKIN",
+      "tglLahir": "2026-10-08",
+      "alamat": "TR 5 A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "7696",
+      "nama": "ERMA",
+      "suami": "AMIN",
+      "tglLahir": "1987-02-21",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1484",
+      "nama": "EVA YUSIFA",
+      "suami": "-",
+      "tglLahir": "1978-04-05",
+      "alamat": "TR 3A Tanjung Mas Makmur",
+      "telp": "-"
+    },
+    {
+      "nik": "8992",
+      "nama": "FILA SAFATUZ ZAIN",
+      "suami": "-",
+      "tglLahir": "1992-05-03",
+      "alamat": "TANJUNG MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "9617",
+      "nama": "FITRI MALINI",
+      "suami": "EKO",
+      "tglLahir": "1993-05-08",
+      "alamat": "GAJAH MATI",
+      "telp": "-"
+    },
+    {
+      "nik": "8039",
+      "nama": "FITRI SUSANTI",
+      "suami": "-",
+      "tglLahir": "1996-04-15",
+      "alamat": "TR1B TANJUNG MAS REJO",
+      "telp": "-"
+    },
+    {
+      "nik": "8494",
+      "nama": "FITRIANINGSIH",
+      "suami": "DEDI IRAWAN",
+      "tglLahir": "1997-04-22",
+      "alamat": "TR7B",
+      "telp": "-"
+    },
+    {
+      "nik": "1483",
+      "nama": "HARTIANI",
+      "suami": "-",
+      "tglLahir": "1989-08-11",
+      "alamat": "TR2B Tanjung Mas Rejo",
+      "telp": "-"
+    },
+    {
+      "nik": "10517",
+      "nama": "HARYATUN",
+      "suami": "-",
+      "tglLahir": "1994-11-13",
+      "alamat": "TR 5 TJ MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "8309",
+      "nama": "HERSIANA",
+      "suami": "-",
+      "tglLahir": "1989-04-25",
+      "alamat": "TR 7 B",
+      "telp": "-"
+    },
+    {
+      "nik": "8227",
+      "nama": "HETI",
+      "suami": "-",
+      "tglLahir": "1987-10-04",
+      "alamat": "TR3B",
+      "telp": "-"
+    },
+    {
+      "nik": "1711",
+      "nama": "IHAT",
+      "suami": "-",
+      "tglLahir": "1979-04-24",
+      "alamat": "PANGKAL",
+      "telp": "-"
+    },
+    {
+      "nik": "9382",
+      "nama": "IKA SUDRAJAT",
+      "suami": "-",
+      "tglLahir": "1994-12-09",
+      "alamat": ": TR 6 B",
+      "telp": "-"
+    },
+    {
+      "nik": "1348",
+      "nama": "INTAN",
+      "suami": "-",
+      "tglLahir": "1991-07-11",
+      "alamat": "GAJAH MATI",
+      "telp": "-"
+    },
+    {
+      "nik": "7812",
+      "nama": "ISTANTI",
+      "suami": "SUNARDI",
+      "tglLahir": "1985-08-31",
+      "alamat": "TR2B",
+      "telp": "-"
+    },
+    {
+      "nik": "1811015911900002",
+      "nama": "ITA ISNAINI",
+      "suami": "SOTIK",
+      "tglLahir": "1990-11-18",
+      "alamat": "SP 10 A TANJUNG SERAYAN A",
+      "telp": "82282404371"
+    },
+    {
+      "nik": "7698",
+      "nama": "KARMIYATI",
+      "suami": "SUYATNO",
+      "tglLahir": "2026-10-05",
+      "alamat": "SP 6 TANJUNG MAS REJO",
+      "telp": "-"
+    },
+    {
+      "nik": "8511",
+      "nama": "KARSIAH",
+      "suami": "-",
+      "tglLahir": "1980-12-31",
+      "alamat": "TR 1 TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "1811026111860002",
+      "nama": "KASYATI",
+      "suami": "HASAN",
+      "tglLahir": "1986-11-20",
+      "alamat": "TR2A TANJUNG MAS MAKMUR",
+      "telp": "85762532804"
+    },
+    {
+      "nik": "9716",
+      "nama": "KOMARIYAH",
+      "suami": "HALIM",
+      "tglLahir": "1978-10-27",
+      "alamat": "TR4A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "9506",
+      "nama": "LASTRI",
+      "suami": "PARYONO",
+      "tglLahir": "1985-05-05",
+      "alamat": "SUKAMAJU, SP 13",
+      "telp": "-"
+    },
+    {
+      "nik": "10648",
+      "nama": "LENI INDAYANI",
+      "suami": "SUSARDI",
+      "tglLahir": "1989-09-05",
+      "alamat": "TANJUNG MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "9062",
+      "nama": "LIANA",
+      "suami": "FUNGKY",
+      "tglLahir": "2001-12-31",
+      "alamat": "SP8",
+      "telp": "-"
+    },
+    {
+      "nik": "10138",
+      "nama": "LINA APRILIANTI",
+      "suami": "ROBIN",
+      "tglLahir": "1994-04-20",
+      "alamat": "TR 1 A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "7624",
+      "nama": "LINDA WATI",
+      "suami": "-",
+      "tglLahir": "1980-06-15",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "82320263352"
+    },
+    {
+      "nik": "9706",
+      "nama": "LISAUDA",
+      "suami": "TN ALIYUS",
+      "tglLahir": "1983-07-02",
+      "alamat": "TANJUNG SERAYAN SP 10 A",
+      "telp": "-"
+    },
+    {
+      "nik": "41",
+      "nama": "MEI YUNITA",
+      "suami": "EKO",
+      "tglLahir": "1987-05-06",
+      "alamat": "Pangkal Mas Mulya",
+      "telp": "82274921866"
+    },
+    {
+      "nik": "7704",
+      "nama": "MILATUL KISTIYA",
+      "suami": "GUNTORO",
+      "tglLahir": "1996-06-03",
+      "alamat": "SP 10 TANJUNG SERAYAN",
+      "telp": "-"
+    },
+    {
+      "nik": "1811024808880001",
+      "nama": "MUJAYANAH",
+      "suami": "MURWANTO",
+      "tglLahir": "1988-08-07",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1464",
+      "nama": "MUSLIMAH",
+      "suami": "-",
+      "tglLahir": "1964-07-15",
+      "alamat": "TR4A",
+      "telp": "-"
+    },
+    {
+      "nik": "10219",
+      "nama": "MUTIHA",
+      "suami": "EDI",
+      "tglLahir": "1998-04-02",
+      "alamat": "RAWAJITU",
+      "telp": "-"
+    },
+    {
+      "nik": "10487",
+      "nama": "NAILA",
+      "suami": "-",
+      "tglLahir": "2007-12-20",
+      "alamat": "SRI TANJUNG WIRALAGA",
+      "telp": "-"
+    },
+    {
+      "nik": "9760",
+      "nama": "NARSIH",
+      "suami": "WAWAN",
+      "tglLahir": "1988-06-06",
+      "alamat": "GAJAH MUKTI SP 1",
+      "telp": "-"
+    },
+    {
+      "nik": "8734",
+      "nama": "NENENG",
+      "suami": "-",
+      "tglLahir": "1996-02-01",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "243",
+      "nama": "NERI",
+      "suami": "-",
+      "tglLahir": "1986-12-31",
+      "alamat": "TR5B SP6",
+      "telp": "-"
+    },
+    {
+      "nik": "8101",
+      "nama": "NUR LATIFAH",
+      "suami": "-",
+      "tglLahir": "1992-08-17",
+      "alamat": "TANJUNG MENANG, MESUJI TIMUR / TR 3 A",
+      "telp": "-"
+    },
+    {
+      "nik": "7678",
+      "nama": "NURHASANAH",
+      "suami": "FAUZAN",
+      "tglLahir": "2026-10-08",
+      "alamat": "PANGKAL MAS",
+      "telp": "-"
+    },
+    {
+      "nik": "93",
+      "nama": "NURUL AINI",
+      "suami": "-",
+      "tglLahir": "1991-05-11",
+      "alamat": "TR 3 B TANJUNG MAS REJO",
+      "telp": "-"
+    },
+    {
+      "nik": "8557",
+      "nama": "NURUL AZIZAH",
+      "suami": "-",
+      "tglLahir": "1983-10-09",
+      "alamat": "WONOSARI",
+      "telp": "-"
+    },
+    {
+      "nik": "7665",
+      "nama": "NURUL SUPARSIH",
+      "suami": "-",
+      "tglLahir": "1997-06-14",
+      "alamat": "TANJUNG MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "344",
+      "nama": "NY RUBIAH",
+      "suami": "-",
+      "tglLahir": "1981-08-11",
+      "alamat": "SP 5 MUARA MAS",
+      "telp": "-"
+    },
+    {
+      "nik": "7790",
+      "nama": "NY SITI NUR AISYAH",
+      "suami": "-",
+      "tglLahir": "2005-01-17",
+      "alamat": "SUNGAI BUAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "8030",
+      "nama": "NY TRI WINDARTI",
+      "suami": "-",
+      "tglLahir": "1980-05-25",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1811027105020002",
+      "nama": "PUTRI MAITA SARI",
+      "suami": "-",
+      "tglLahir": "2002-05-30",
+      "alamat": "TR 6 A TANJUNG MAS MAKMUR",
+      "telp": "81271333045"
+    },
+    {
+      "nik": "10340",
+      "nama": "PUTRI RAHAYU",
+      "suami": "-",
+      "tglLahir": "2003-10-21",
+      "alamat": "SUNGAI BUAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1329",
+      "nama": "RAMINAH",
+      "suami": "-",
+      "tglLahir": "1974-07-22",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "10236",
+      "nama": "REFI",
+      "suami": "-",
+      "tglLahir": "1989-12-31",
+      "alamat": "SP 7 TANJUNG MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "8268",
+      "nama": "RENI",
+      "suami": "-",
+      "tglLahir": "1989-07-14",
+      "alamat": "TR 2B TANJUNG MAS REJO",
+      "telp": "-"
+    },
+    {
+      "nik": "10572",
+      "nama": "RENI KURNIASIH",
+      "suami": "-",
+      "tglLahir": "1987-08-13",
+      "alamat": "TR 2 B TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "7997",
+      "nama": "RESTI AMALIA",
+      "suami": "-",
+      "tglLahir": "2003-10-24",
+      "alamat": "TR 5B",
+      "telp": "-"
+    },
+    {
+      "nik": "7686",
+      "nama": "RIKA ISDAYANA",
+      "suami": "-",
+      "tglLahir": "1991-11-21",
+      "alamat": "TR 5 A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "7939",
+      "nama": "RINAWATI",
+      "suami": "WANDI",
+      "tglLahir": "1986-07-05",
+      "alamat": "TANJUNG SERAYAN",
+      "telp": "-"
+    },
+    {
+      "nik": "10408",
+      "nama": "RISA FITRI",
+      "suami": "FREDI",
+      "tglLahir": "1992-03-26",
+      "alamat": "TR 4 A",
+      "telp": "-"
+    },
+    {
+      "nik": "7891",
+      "nama": "RIYANA",
+      "suami": "HAMDANI",
+      "tglLahir": "1999-06-17",
+      "alamat": "SP 1 GAJAH MUKTI",
+      "telp": "-"
+    },
+    {
+      "nik": "226",
+      "nama": "RUKAYAH",
+      "suami": "-",
+      "tglLahir": "1961-08-10",
+      "alamat": "SP13",
+      "telp": "-"
+    },
+    {
+      "nik": "8743",
+      "nama": "RUSMALA",
+      "suami": "IMAN",
+      "tglLahir": "1999-11-09",
+      "alamat": "SUNGAI BUAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1811026404020002",
+      "nama": "SINTA KURNIAWATI",
+      "suami": "-",
+      "tglLahir": "2002-07-23",
+      "alamat": "PANGKL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "10228",
+      "nama": "SITI",
+      "suami": "-",
+      "tglLahir": "1979-12-31",
+      "alamat": "TR 2 B TANJUNG MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "481",
+      "nama": "SITI AMINAHH",
+      "suami": "-",
+      "tglLahir": "1980-08-09",
+      "alamat": "GAJAH MATI",
+      "telp": "-"
+    },
+    {
+      "nik": "10186",
+      "nama": "SITI FATIMAH",
+      "suami": "HUDAWAN",
+      "tglLahir": "1995-12-05",
+      "alamat": "TIRTALAGA SP 9",
+      "telp": "82178294450"
+    },
+    {
+      "nik": "1507104411990002",
+      "nama": "SITI MASFUFA",
+      "suami": "-",
+      "tglLahir": "1999-11-03",
+      "alamat": "GAJAH MUKTI",
+      "telp": "-"
+    },
+    {
+      "nik": "10193",
+      "nama": "SITI MUNAWAROH",
+      "suami": "AMINUDIN",
+      "tglLahir": "1988-08-16",
+      "alamat": "GAJAH MUKTI SP 1",
+      "telp": "-"
+    },
+    {
+      "nik": "8611",
+      "nama": "SITI MUNTAMAH",
+      "suami": "-",
+      "tglLahir": "1980-10-15",
+      "alamat": "TR 2 B TANJUNG MAS REJO",
+      "telp": "-"
+    },
+    {
+      "nik": "1811025411800001",
+      "nama": "SITI NADIROH",
+      "suami": "-",
+      "tglLahir": "1980-11-09",
+      "alamat": "PANGKAL",
+      "telp": "-"
+    },
+    {
+      "nik": "10156",
+      "nama": "SRI ASTUTI",
+      "suami": "-",
+      "tglLahir": "1988-08-08",
+      "alamat": "TANJUNG MAS MULYA",
+      "telp": "-"
+    },
+    {
+      "nik": "7770",
+      "nama": "SRI ENDANG",
+      "suami": "NURHASIM",
+      "tglLahir": "1977-01-15",
+      "alamat": "SP 9 TIRTALAGA",
+      "telp": "-"
+    },
+    {
+      "nik": "8644",
+      "nama": "SUHAINI",
+      "suami": "-",
+      "tglLahir": "1984-10-31",
+      "alamat": "SUNGAI BUAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "8929",
+      "nama": "SUKAROH",
+      "suami": "SUPARDI",
+      "tglLahir": "1985-06-07",
+      "alamat": "GAJAH MATI",
+      "telp": "-"
+    },
+    {
+      "nik": "9512",
+      "nama": "SUMIATI",
+      "suami": "SUGENG",
+      "tglLahir": "1980-12-31",
+      "alamat": "TR 2 A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "1621",
+      "nama": "SUNARIYAH",
+      "suami": "-",
+      "tglLahir": "1979-07-11",
+      "alamat": "TR3A",
+      "telp": "-"
+    },
+    {
+      "nik": "7843",
+      "nama": "SUPRIHATIN",
+      "suami": "DANU SIWO",
+      "tglLahir": "1985-01-25",
+      "alamat": "SP10",
+      "telp": "-"
+    },
+    {
+      "nik": "9373",
+      "nama": "SURAHMI",
+      "suami": "BAYKHUNI",
+      "tglLahir": "1981-12-31",
+      "alamat": "TR 1A Tanjung Mas Makmur",
+      "telp": "-"
+    },
+    {
+      "nik": "8359",
+      "nama": "SURYANI",
+      "suami": "-",
+      "tglLahir": "1985-12-30",
+      "alamat": "TR 2A TANJUNG MAS MAKMUR",
+      "telp": "-"
+    },
+    {
+      "nik": "10593",
+      "nama": "SUSI SULASTRI",
+      "suami": "EKO PRAMONO",
+      "tglLahir": "1995-12-30",
+      "alamat": "SUNGAI BUAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "10522",
+      "nama": "SUSIATI",
+      "suami": "MISBAH",
+      "tglLahir": "1990-06-29",
+      "alamat": "SP 10 BLOK O",
+      "telp": "-"
+    },
+    {
+      "nik": "28",
+      "nama": "SUSILAWATI",
+      "suami": "-",
+      "tglLahir": "1984-01-01",
+      "alamat": "SP3 GAJAH MATI",
+      "telp": "-"
+    },
+    {
+      "nik": "9892",
+      "nama": "SUSIYATI",
+      "suami": "-",
+      "tglLahir": "1990-05-31",
+      "alamat": "SP 10 TANJUNG SERAYAN",
+      "telp": "-"
+    },
+    {
+      "nik": "9817",
+      "nama": "SUWARTI",
+      "suami": "ABDUL ROPIQ",
+      "tglLahir": "1990-12-23",
+      "alamat": "SUNGAI BUAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1811024605870002",
+      "nama": "TASINGKEM",
+      "suami": "-",
+      "tglLahir": "1987-05-05",
+      "alamat": "PANGKAL MAS MULYA",
+      "telp": "-"
+    },
+    {
+      "nik": "8304",
+      "nama": "TIRAH",
+      "suami": "-",
+      "tglLahir": "1983-12-31",
+      "alamat": "TR3B",
+      "telp": "-"
+    },
+    {
+      "nik": "1811025705030001",
+      "nama": "TITIS PURNAMA SARI",
+      "suami": "REFANGGA",
+      "tglLahir": "2003-05-14",
+      "alamat": "PANGKAL MAS",
+      "telp": "85773956378"
+    },
+    {
+      "nik": "10556",
+      "nama": "TRI ARYANTI",
+      "suami": "-",
+      "tglLahir": "1998-04-16",
+      "alamat": "GAJAH MATI",
+      "telp": "-"
+    },
+    {
+      "nik": "9554",
+      "nama": "TRI YULIANTI",
+      "suami": "ARIS",
+      "tglLahir": "1991-02-01",
+      "alamat": "TR7B",
+      "telp": "-"
+    },
+    {
+      "nik": "10026",
+      "nama": "TRINA",
+      "suami": "WANDI",
+      "tglLahir": "2026-03-25",
+      "alamat": "TANJUNG SERAYAN SP 10",
+      "telp": "-"
+    },
+    {
+      "nik": "8414",
+      "nama": "TURINAH",
+      "suami": "-",
+      "tglLahir": "1975-02-28",
+      "alamat": "TR 3 B TANJUNG MAS REJO",
+      "telp": "-"
+    },
+    {
+      "nik": "1811024205960001",
+      "nama": "TURSILOWATI",
+      "suami": "-",
+      "tglLahir": "1996-05-01",
+      "alamat": "TR 7",
+      "telp": "-"
+    },
+    {
+      "nik": "9352",
+      "nama": "UMI",
+      "suami": "INDRA",
+      "tglLahir": "1997-04-03",
+      "alamat": "PANGKAL MAS",
+      "telp": "-"
+    },
+    {
+      "nik": "1602157007031004",
+      "nama": "UTARI",
+      "suami": "-",
+      "tglLahir": "2000-10-22",
+      "alamat": "SUNGAI CAMBAI",
+      "telp": "-"
+    },
+    {
+      "nik": "8036",
+      "nama": "UUT WIDIANTARI",
+      "suami": "-",
+      "tglLahir": "1991-08-16",
+      "alamat": "SUNGAI BUAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "8429",
+      "nama": "VINA",
+      "suami": "IWAN",
+      "tglLahir": "1990-05-04",
+      "alamat": "TANJUNG SERAYAN A SP 10 A",
+      "telp": "-"
+    },
+    {
+      "nik": "10484",
+      "nama": "WIKA",
+      "suami": "RENDI",
+      "tglLahir": "2000-05-14",
+      "alamat": "SIDANG GUNUNG 3",
+      "telp": "-"
+    },
+    {
+      "nik": "7410",
+      "nama": "YAHYAH",
+      "suami": "-",
+      "tglLahir": "1986-04-07",
+      "alamat": "PANGKAL MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "9853",
+      "nama": "YAYAH",
+      "suami": "ALI",
+      "tglLahir": "1985-08-10",
+      "alamat": "TR 4 A Tanjung Mas Makmur",
+      "telp": "-"
+    },
+    {
+      "nik": "9931",
+      "nama": "YUNARTI",
+      "suami": "-",
+      "tglLahir": "1999-05-16",
+      "alamat": "SP 7 TANJUNG MAS JAYA",
+      "telp": "-"
+    },
+    {
+      "nik": "1283",
+      "nama": "YUNITA SARI",
+      "suami": "-",
+      "tglLahir": "1997-06-01",
+      "alamat": "TR2 TANJUNG MAS",
+      "telp": "-"
+    }
+  ],
+  "petugasKb": [
+    {
+      "id": 1,
+      "nama": "Sri Handayani, S.Tr.Keb",
+      "jabatan": "Bidan Praktik",
+      "sip": "SIP-332/2026",
+      "telp": "081122334455"
+    },
+    {
+      "id": 2,
+      "nama": "dr. Anis Prima Dewi",
+      "jabatan": "Dokter Penanggung Jawab",
+      "sip": "SIP-333/2026",
+      "telp": "081122334456"
+    },
+    {
+      "id": 1791678981309,
+      "nama": "Disti Dwistika Amd.Keb",
+      "jabatan": "Bidan ",
+      "sip": "-",
+      "telp": "-"
+    }
+  ],
+  "obatKb": [
+    {
+      "id": 1791721046221,
+      "nama": "Cyclofem Injek 1 Bulan",
+      "komposisi": "Medroxyprogesterone acetate 50 mg, estradiol cypionate 10 mg",
+      "harga": 40000
+    },
+    {
+      "id": 1791721075338,
+      "nama": "TRICLOFEM INJ 3BLN",
+      "komposisi": "Medroxyprogesterone acetate 150 mg",
+      "harga": 40000
+    },
+    {
+      "id": 1791721095512,
+      "nama": "ANDALAN INJEK 3 BLN / 3 ML 150MG/ 3ML",
+      "komposisi": "Medroxyprogesterone acetate 150 mg",
+      "harga": 40000
+    },
+    {
+      "id": 1791721114674,
+      "nama": "ANDALAN HARMONIS 0.5ML/1BLN",
+      "komposisi": "Medroxyprogesterone Acetate 25mg, Estradiol Cypionate 5mg",
+      "harga": 40000
+    },
+    {
+      "id": 1791721138461,
+      "nama": "ANDALAN 3 BLN 1CC UNGU",
+      "komposisi": "Medroxyprogesterone acetate 150 mg",
+      "harga": 40000
+    },
+    {
+      "id": 1791721164597,
+      "nama": "GESTIN F2 INJEK 2BLN",
+      "komposisi": "Medroxyprogesterone Acetate 65mg, Estradiol Cypionate 7.5mg",
+      "harga": 40000
+    },
+    {
+      "id": 1791721183648,
+      "nama": "GESTIN F3 INJEK 3 BLN",
+      "komposisi": "Medroxyprogesterone Acetate 120mg, Estradiol Cypionate 10mg",
+      "harga": 40000
+    }
+  ],
+  "kunjunganKb": [
+    {
+      "id": 1791724060771,
+      "tanggal": "2026-01-05",
+      "akseptorNik": "7410",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN HARMONIS 0.5ML/1BLN",
+      "anamnesa": "TD 119/78",
+      "tglKembali": "2026-02-02",
+      "status": "Baru"
+    },
+    {
+      "id": 1791724137297,
+      "tanggal": "2026-01-07",
+      "akseptorNik": "9554",
+      "petugasNama": "dr. Anis Prima Dewi",
+      "obatNama": "Cyclofem Injek 1 Bulan",
+      "anamnesa": "TD 100/78",
+      "tglKembali": "2026-02-04",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137298,
+      "tanggal": "2026-01-07",
+      "akseptorNik": "1283",
+      "petugasNama": "dr. Anis Prima Dewi",
+      "obatNama": "ANDALAN 3 BLN 1CC UNGU",
+      "anamnesa": "TD 115/76",
+      "tglKembali": "2026-04-01",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137299,
+      "tanggal": "2026-01-17",
+      "akseptorNik": "8734",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN 3 BLN 1CC UNGU",
+      "anamnesa": "TD 117/78",
+      "tglKembali": "2026-04-10",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137300,
+      "tanggal": "2026-01-17",
+      "akseptorNik": "1602154211051008",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN HARMONIS 0.5ML/1BLN",
+      "anamnesa": "TD 120/80",
+      "tglKembali": "2026-04-10",
+      "status": "Baru"
+    },
+    {
+      "id": 1791724137301,
+      "tanggal": "2026-01-19",
+      "akseptorNik": "8743",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN HARMONIS 0.5ML/1BLN",
+      "anamnesa": "TD 128/84",
+      "tglKembali": "2026-02-16",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137302,
+      "tanggal": "2026-01-19",
+      "akseptorNik": "1507104411990002",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN 3 BLN 1CC UNGU",
+      "anamnesa": "TD 120/81",
+      "tglKembali": "2026-02-02",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137303,
+      "tanggal": "2026-01-21",
+      "akseptorNik": "1602156510880003",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN 3 BLN 1CC UNGU",
+      "anamnesa": "BB 66KG TD 107/70",
+      "tglKembali": "2026-11-10",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137304,
+      "tanggal": "2026-01-24",
+      "akseptorNik": "7848",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "Cyclofem Injek 1 Bulan",
+      "anamnesa": "TD 117/82",
+      "tglKembali": "2026-02-21",
+      "status": "Baru"
+    },
+    {
+      "id": 1791724137305,
+      "tanggal": "2026-01-24",
+      "akseptorNik": "9817",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "TRICLOFEM INJ 3BLN",
+      "anamnesa": "TD 123/89",
+      "tglKembali": "2026-04-17",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137306,
+      "tanggal": "2026-01-25",
+      "akseptorNik": "1704075208890001",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "TRICLOFEM INJ 3BLN",
+      "anamnesa": "TD 104/75 MMHG BB: 65 KG",
+      "tglKembali": "2026-04-19",
+      "status": "Lama"
+    },
+    {
+      "id": 1791724137307,
+      "tanggal": "2026-01-29",
+      "akseptorNik": "9367",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "TRICLOFEM INJ 3BLN",
+      "anamnesa": "TD 105/71 MMHG BB: 50 KG",
+      "tglKembali": "2026-04-23",
+      "status": "Baru"
+    },
+    {
+      "id": 1791741436009,
+      "tanggal": "2026-02-01",
+      "akseptorNik": "7843",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN HARMONIS 0.5ML/1BLN",
+      "anamnesa": "TD:120/70 MMHG",
+      "tglKembali": "2026-02-28",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436010,
+      "tanggal": "2026-02-01",
+      "akseptorNik": "9853",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN HARMONIS 0.5ML/1BLN",
+      "anamnesa": "TD 108/64 MMHG BB: 68X/M",
+      "tglKembali": "2026-02-28",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436011,
+      "tanggal": "2026-02-04",
+      "akseptorNik": "9554",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN HARMONIS 0.5ML/1BLN",
+      "anamnesa": "TD: 110/70 MMHG",
+      "tglKembali": "2026-03-01",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436012,
+      "tanggal": "2026-02-08",
+      "akseptorNik": "9892",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN 3 BLN 1CC UNGU",
+      "anamnesa": "TD 100/75 MMHG BB:48X/M",
+      "tglKembali": "2026-05-03",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436013,
+      "tanggal": "2026-02-09",
+      "akseptorNik": "93",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "TRICLOFEM INJ 3BLN",
+      "anamnesa": "TD:123/78 MMHG",
+      "tglKembali": "2026-05-04",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436014,
+      "tanggal": "2026-02-17",
+      "akseptorNik": "7678",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "GESTIN F2 INJEK 2BLN",
+      "anamnesa": "TD: 120/70 MMHG",
+      "tglKembali": "2026-04-18",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436015,
+      "tanggal": "2026-02-21",
+      "akseptorNik": "1621",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "ANDALAN 3 BLN 1CC UNGU",
+      "anamnesa": "TD 128/83 MMHG BB:72KG",
+      "tglKembali": "2026-05-16",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436016,
+      "tanggal": "2026-02-23",
+      "akseptorNik": "8743",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "Cyclofem Injek 1 Bulan",
+      "anamnesa": "TD:120/80 MMHG",
+      "tglKembali": "2026-03-20",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436017,
+      "tanggal": "2026-02-24",
+      "akseptorNik": "8018",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "TRICLOFEM INJ 3BLN",
+      "anamnesa": "TD: 110/82 MMHG",
+      "tglKembali": "2026-05-19",
+      "status": "Lama"
+    },
+    {
+      "id": 1791741436019,
+      "tanggal": "2026-02-24",
+      "akseptorNik": "7665",
+      "petugasNama": "Sri Handayani, S.Tr.Keb",
+      "obatNama": "TRICLOFEM INJ 3BLN",
+      "anamnesa": "TD: 120/ 80 MMHG",
+      "tglKembali": "2026-05-19",
+      "status": "Lama"
+    }
+  ],
+  "konselingRecords": [],
+  "ptoRecords": [
+    {
+      "id": 1,
+      "tanggal": "2026-10-05",
+      "patientId": 1791739282067,
+      "riwayatPenyakit": "Hipertensi",
+      "riwayatPenggunaanObat": "R/ ZEVASK 5 MG NO X 1X1 MALAM, CEFIXIM 200MG NO X 2X1 PC, SANADRYL SYR UNGU EXP 3X10 ML. PARANERVION NO X 3X1",
+      "riwayatAlergi": "tidak ada",
+      "namaObatDanDosis": "Amlodipine 5 mg",
+      "identifikasiMasalah": "pemberian SANADRYL SYR (mengandung diphenhidramin) sebagai terapi simptoms ISPA atas memiliki perhatian khusus pada pasien dengan hipertensi.",
+      "rekomendasiTindakLanjut": "pantau TD, rekomendasi ke dokter penulis resep untuk dipertimbangkan pemberian obat sanadril expect."
+    }
+  ],
+  "swamedikasiRecords": [
+    {
+      "id": 1791649257500,
+      "tanggal": "2026-10-10",
+      "namaPasien": "anto",
+      "umur": 30,
+      "keluhan": "sakit pinggang",
+      "obatDiberikan": "paranervion 3x1 pc",
+      "edukasi": "istrahat yang cukup, jangan beraktifitas berat\n"
+    }
+  ],
+  "mesoRecords": [
+    {
+      "id": 1,
+      "tanggal": "2026-06-10",
+      "patientId": 1,
+      "triwulan": "Triwulan II / 2026",
+      "namaObat": "Amlodipine",
+      "bentukSediaan": "Tablet",
+      "noBets": "B202601",
+      "obatBersamaan": "-",
+      "caraPemberian": "Oral",
+      "dosisPemberian": "5 mg",
+      "tglMulaObat": "2026-06-01",
+      "tglAkhirObat": "2026-06-10",
+      "deskripsiKtd": "Tidak ada keluhan",
+      "tglMulaKtd": "-",
+      "tglAkhirKtd": "-",
+      "kesudahanKtd": "Sembuh",
+      "riwayatKtd": "Tidak ada",
+      "namaPelapor": "apt. Mardin, S.Farm"
+    }
+  ],
+  "homeRecords": [],
+  "pioRecords": [
+    {
+      "id": 1,
+      "noPio": "PIO-001",
+      "tanggal": "2026-06-02",
+      "waktu": "10:00",
+      "metode": "Lisan",
+      "namaPenanya": "Siti Aminah (RM: RM-001)",
+      "noTelpPenanya": "081234567890",
+      "statusPenanya": "Pasien",
+      "umurPasien": "45",
+      "tinggiPasien": "160",
+      "beratPasien": "65",
+      "jkPasien": "Perempuan",
+      "kehamilan": "Tidak",
+      "menyusui": "Tidak",
+      "uraianPertanyaan": "Bagaimana cara minum obat hipertensi yang benar?",
+      "jenisPertanyaan": [
+        "Identifikasi Obat",
+        "Cara Pemakaian"
+      ],
+      "jawaban": "Diminum pagi hari sesudah makan secara rutin.",
+      "referensi": "ISO Indonesia",
+      "penyampaian": "Segera",
+      "apotekerPenjawab": "apt. Mardin, S.Farm",
+      "metodeJawaban": "Lisan"
+    }
+  ]
+}
