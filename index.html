@@ -261,15 +261,16 @@ const [sortKunjunganOrder, setSortKunjunganOrder] = React.useState('desc');
             ]));
             const [akseptorSortOrder, setAkseptorSortOrder] = React.useState('asc'); // 'asc' (A-Z), 'desc' (Z-A)
             const [petugasKb, setPetugasKb] = React.useState(() => getStorage('petugaskb', [
-                { id: 1, nama: "Sri Handayani, S.Tr.Keb", jabatan: "Bidan Praktik", sip: "SIP-332/2026", telp: "081122334455" },
-                { id: 2, nama: DEFAULT_DOKTER_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP-333/2026", telp: "081122334456" }
+                { id: 1, nama: "Sri Handayani, S.Tr.Keb", jabatan: "Bidan", sip: "SIP-332/2026", telp: "081122334455" },
+                { id: 2, nama: DEFAULT_DOKTER_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025", telp: "081122334456" },
+                { id: 3, nama: "Disti Dwistika Amd.Keb", jabatan: "Bidan", sip: "SIP-332/2026", telp: "081122334455" }
             ]));
             const [obatKb, setObatKb] = React.useState(() => getStorage('obatkb', [
                 { id: 1, nama: "Cyclofem Injek 1 Bulan", komposisi: "Medroxyprogesterone acetate 50 mg, estradiol cypionate 10 mg", harga: 40000 },
                 { id: 2, nama: "TRICLOFEM INJ 3BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
-                { id: 3, nama: "ANDALAN INJEK 3 BLN / 3 ML 150MG/ 3ML", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
-               { id: 4, nama: "ANDALAN HARMONIS 0.5ML/1BLN", komposisi: "Medroxyprogesterone Acetate 25mg, Estradiol Cypionate 5mg", harga: 40000 }, 
-               { id: 5, nama: "ANDALAN 3 BLN 1CC UNGU", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
+                { id: 3, nama: "ANDALAN INJEK 3 BLN / 3 ML 150MG/ 3ML", komposisi: "Depo Medroxyprogesterone", harga: 40000 }, 
+               { id: 4, nama: "ANDALAN HARMONIS 0.5ML/1BLN", komposisi: "Depo Medroxyprogesterone", harga: 40000 }, 
+               { id: 5, nama: "ANDALAN 3 BLN 1CC UNGU", komposisi: "Depo Medroxyprogesterone", harga: 40000 }, 
                { id: 6, nama: "GESTIN F2 INJEK 2BLN", komposisi: "Medroxyprogesterone Acetate 65mg, Estradiol Cypionate 7.5mg", harga: 40000 }, 
                { id: 7, nama: "GESTIN F3 INJEK 3 BLN", komposisi: "Medroxyprogesterone Acetate 120mg, Estradiol Cypionate 10mg", harga: 40000 }
             ]));
@@ -2646,7 +2647,7 @@ const exportTemplatePasien = () => {
                         {modalConfig.type === 'petugaskb' && (
                             <>
                                 <div><label className="block text-xs font-semibold mb-1">Nama Petugas / Bidan</label><input type="text" name="nama" defaultValue={modalConfig.data?.nama || ''} required className="w-full border rounded-xl p-2 text-sm" /></div>
-                                <div><label className="block text-xs font-semibold mb-1">Jabatan</label><input type="text" name="jabatan" defaultValue={modalConfig.data?.jabatan || 'Bidan Praktik'} required className="w-full border rounded-xl p-2 text-sm" /></div>
+                                <div><label className="block text-xs font-semibold mb-1">Jabatan</label><input type="text" name="jabatan" defaultValue={modalConfig.data?.jabatan || 'Bidan'} required className="w-full border rounded-xl p-2 text-sm" /></div>
                                 <div><label className="block text-xs font-semibold mb-1">No. SIP</label><input type="text" name="sip" defaultValue={modalConfig.data?.sip || ''} required className="w-full border rounded-xl p-2 text-sm font-mono" /></div>
                                 <div><label className="block text-xs font-semibold mb-1">No. Telepon</label><input type="text" name="telp" defaultValue={modalConfig.data?.telp || ''} required className="w-full border rounded-xl p-2 text-sm" /></div>
                             </>
