@@ -265,15 +265,15 @@ const [sortKunjunganOrder, setSortKunjunganOrder] = React.useState('desc');
                 { id: 2, nama: DEFAULT_DOKTER_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025", telp: "081122334456" },
                 { id: 3, nama: "Disti Dwistika Amd.Keb", jabatan: "Bidan", sip: "SIP-332/2026", telp: "081122334455" }
             ]));
-            const [obatKb, setObatKb] = React.useState(() => getStorage('obatkb', [
-                { id: 1, nama: "Cyclofem Injek 1 Bulan", komposisi: "Medroxyprogesterone acetate 50 mg, estradiol cypionate 10 mg", harga: 40000 },
-                { id: 2, nama: "TRICLOFEM INJ 3BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
-                { id: 3, nama: "ANDALAN INJEK 3 BLN / 3 ML 150MG/ 3ML", komposisi: "Depo Medroxyprogesterone", harga: 40000 }, 
-               { id: 4, nama: "ANDALAN HARMONIS 0.5ML/1BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
-               { id: 5, nama: "ANDALAN 3 BLN 1CC UNGU", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
-               { id: 6, nama: "GESTIN F2 INJEK 2BLN", komposisi: "Medroxyprogesterone Acetate 65mg, Estradiol Cypionate 7.5mg", harga: 40000 }, 
-               { id: 7, nama: "GESTIN F3 INJEK 3 BLN", komposisi: "Medroxyprogesterone Acetate 120mg, Estradiol Cypionate 10mg", harga: 40000 }
-            ]));
+            const [obatKb, setObatKb] = React.useState(() => getStorage('obatkb_v2', [
+    { id: 1, nama: "Cyclofem Injek 1 Bulan", komposisi: "Medroxyprogesterone acetate 50 mg, estradiol cypionate 10 mg", harga: 40000 },
+    { id: 2, nama: "TRICLOFEM INJ 3BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
+    { id: 3, nama: "ANDALAN INJEK 3 BLN / 3 ML 150MG/ 3ML", komposisi: "Depo Medroxyprogesterone", harga: 40000 }, 
+    { id: 4, nama: "ANDALAN HARMONIS 0.5ML/1BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
+    { id: 5, nama: "ANDALAN 3 BLN 1CC UNGU", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
+    { id: 6, nama: "GESTIN F2 INJEK 2BLN", komposisi: "Medroxyprogesterone Acetate 65mg, Estradiol Cypionate 7.5mg", harga: 40000 }, 
+    { id: 7, nama: "GESTIN F3 INJEK 3 BLN", komposisi: "Medroxyprogesterone Acetate 120mg, Estradiol Cypionate 10mg", harga: 40000 }
+]));
             const [obatKbSortOrder, setObatKbSortOrder] = React.useState('desc');
             const [kunjunganKb, setKunjunganKb] = React.useState(() => getStorage('kunjungankb', [
                 { id: 1, tanggal: "2026-10-04", akseptorNik: "1602155203801005", petugasNama: "Sri Handayani, S.Tr.Keb", obatNama: "Cyclofem Injek 1 Bulan", anamnesa: "120/80", tglKembali: "2026-11-04", status: "Lama" },
