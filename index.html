@@ -260,11 +260,11 @@ const [sortKunjunganOrder, setSortKunjunganOrder] = React.useState('desc');
                 { nik: "3278014508920001", nama: "Siti Rahmawati", suami: "Ahmad Fauzi", tglLahir: "1992-08-15", alamat: "Jl. Mawar No. 12", telp: "081234567891" }
             ]));
             const [akseptorSortOrder, setAkseptorSortOrder] = React.useState('asc'); // 'asc' (A-Z), 'desc' (Z-A)
-            const [petugasKb, setPetugasKb] = React.useState(() => getStorage('petugaskb', [
-                { id: 1, nama: "Sri Handayani, S.Tr.Keb", jabatan: "Bidan", sip: "SIP-332/2026", telp: "081122334455" },
-                { id: 2, nama: DEFAULT_DOKTER_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025", telp: "081122334456" },
-                { id: 3, nama: "Disti Dwistika Amd.Keb", jabatan: "Bidan", sip: "SIP-332/2026", telp: "081122334455" }
-            ]));
+            const [petugasKb, setPetugasKb] = React.useState(() => getStorage('petugaskb_v2', [
+    { id: 1, nama: "Sri Handayani, S.Tr.Keb", jabatan: "Bidan", sip: "SIP-332/2026", telp: "081122334455" }, 
+    { id: 2, nama: DEFAULT_DOKTER_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025", telp: "081122334456" }, 
+    { id: 3, nama: "Disti Dwistika Amd.Keb", jabatan: "Bidan", sip: "SIP-332/2026", telp: "081122334455" }
+]));
             const [obatKb, setObatKb] = React.useState(() => getStorage('obatkb_v2', [
     { id: 1, nama: "Cyclofem Injek 1 Bulan", komposisi: "Medroxyprogesterone acetate 50 mg, estradiol cypionate 10 mg", harga: 40000 },
     { id: 2, nama: "TRICLOFEM INJ 3BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
