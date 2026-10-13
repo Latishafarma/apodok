@@ -14,38 +14,6 @@
     
     <!-- Babel Standalone for JSX -->
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <!-- Supabase JS Client SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- Skrip Inisialisasi & Sinkronisasi Supabase (Aman & Terisolasi) -->
-    <script data-plugins="none">
-        var SUPABASE_URL = 'https://kskwdbclkjkavrcibmko.supabase.co';
-        var SUPABASE_ANON_KEY = 'sb_publishable_VN98zyN3XQslGu_bF_MegA_cJ5qMBLO';
-
-        window.addEventListener('DOMContentLoaded', function() {
-            var checkInterval = setInterval(function() {
-                if (window.supabase) {
-                    clearInterval(checkInterval);
-                    window._supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                    console.log('Supabase berhasil terhubung secara global.');
-
-                    // Fungsi global untuk menyimpan transaksi baru ke tabel 'transaksi' di Supabase
-                    window.simpanTransaksiKeSupabase = function(dataBaru) {
-                        if (window._supabase) {
-                            window._supabase.from('transaksi').insert([dataBaru]).then(function(res) {
-                                if (res.error) {
-                                    console.error('Gagal menyimpan transaksi ke Supabase:', res.error.message);
-                                } else {
-                                    console.log('Transaksi berhasil disimpan ke Supabase.');
-                                }
-                            });
-                        }
-                    };
-                }
-            }, 300);
-        });
-    </script>
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -100,11 +68,11 @@
         const DEFAULT_SARANA_IZIN = "23082300357340002";
         const DEFAULT_APOTEKER_NAMA = "apt. Mardin, S.Farm";
         const DEFAULT_APOTEKER_SIPA = "400.7.5.4/256/SIPA/IV.13/MSJ/2026";
-        const DEFAULT_BIDAN_NAMA = "dr. Anis Prima Dewi";
+        const DEFAULT_DOKTER_NAMA = "dr. Anis Prima Dewi";
         const WEB_APP_ABSEN_URL = 'https://script.google.com/macros/s/AKfycbzpG4kTChJ-Sd6-D4oP5ZWND3sQ6fQb0EidgJ-PKIIhPGlap0ENeFQd44j6_m1UftZt/exec';
         
         const QR_CONTENT_APOTEKER = `VALID TTD APOTEKER: ${DEFAULT_APOTEKER_NAMA} | SIPA: ${DEFAULT_APOTEKER_SIPA} | SIA: ${DEFAULT_SARANA_IZIN}`;
-        const QR_CONTENT_BIDAN = `VALID TTD PENANGGUNGJAWAB: ${DEFAULT_BIDAN_NAMA} | DPM ANIS PRIMA DEWI`;
+        const QR_CONTENT_BIDAN = `VALID TTD PENANGGUNGJAWAB: ${DEFAULT_DOKTER_NAMA} | DPM ANIS PRIMA DEWI`;
 
         function QRCodeComponent({ text, size = 96 }) {
             const qrRef = React.useRef(null);
@@ -282,8 +250,7 @@
             const [isSyncingAbsensi, setIsSyncingAbsensi] = React.useState(false);
             const [printOrientation, setPrintOrientation] = React.useState('portrait'); // 'portrait' atau 'landscape'
             const [printPaperSize, setPrintPaperSize] = React.useState('A4'); // 'A4', 'F4', atau 'letter'
-            const [sortKunjunganOrder, setSortKunjunganOrder] = React.useState('desc');
-
+const [sortKunjunganOrder, setSortKunjunganOrder] = React.useState('desc');
             // States
             const [patients, setPatients] = React.useState(() => getStorage('patients', [
                 { id: 1, noRM: "RM-001", nama: "Siti Aminah", tglLahir: "1981-05-12", jk: "Perempuan", alamat: "Jl. Merdeka No. 14", telepon: "081234567890", alergi: "Paracetamol", diagnosa: "Hipertensi" }
@@ -295,16 +262,21 @@
             const [akseptorSortOrder, setAkseptorSortOrder] = React.useState('asc'); // 'asc' (A-Z), 'desc' (Z-A)
             const [petugasKb, setPetugasKb] = React.useState(() => getStorage('petugaskb', [
                 { id: 1, nama: "Sri Handayani, S.Tr.Keb", jabatan: "Bidan Praktik", sip: "SIP-332/2026", telp: "081122334455" },
-                { id: 2, nama: DEFAULT_BIDAN_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP-333/2026", telp: "081122334456" }
+                { id: 2, nama: DEFAULT_DOKTER_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP-333/2026", telp: "081122334456" }
             ]));
             const [obatKb, setObatKb] = React.useState(() => getStorage('obatkb', [
                 { id: 1, nama: "Cyclofem Injek 1 Bulan", komposisi: "Medroxyprogesterone acetate 50 mg, estradiol cypionate 10 mg", harga: 40000 },
-                { id: 2, nama: "TRICLOFEM INJ 3BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }
+                { id: 2, nama: "TRICLOFEM INJ 3BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
+                { id: 3, nama: "ANDALAN INJEK 3 BLN / 3 ML 150MG/ 3ML", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
+               { id: 4, nama: "ANDALAN HARMONIS 0.5ML/1BLN", komposisi: "Medroxyprogesterone Acetate 25mg, Estradiol Cypionate 5mg", harga: 40000 }, 
+               { id: 5, nama: "ANDALAN 3 BLN 1CC UNGU", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }, 
+               { id: 6, nama: "GESTIN F2 INJEK 2BLN", komposisi: "Medroxyprogesterone Acetate 65mg, Estradiol Cypionate 7.5mg", harga: 40000 }, 
+               { id: 7, nama: "GESTIN F3 INJEK 3 BLN", komposisi: "Medroxyprogesterone Acetate 120mg, Estradiol Cypionate 10mg", harga: 40000 }
             ]));
             const [obatKbSortOrder, setObatKbSortOrder] = React.useState('desc');
             const [kunjunganKb, setKunjunganKb] = React.useState(() => getStorage('kunjungankb', [
                 { id: 1, tanggal: "2026-10-04", akseptorNik: "1602155203801005", petugasNama: "Sri Handayani, S.Tr.Keb", obatNama: "Cyclofem Injek 1 Bulan", anamnesa: "120/80", tglKembali: "2026-11-04", status: "Lama" },
-                { id: 2, tanggal: "2026-10-01", akseptorNik: "3278014508920001", petugasNama: DEFAULT_BIDAN_NAMA, obatNama: "Cyclofem Injek 1 Bulan", anamnesa: "TD 120/80 mmHg", tglKembali: new Date().toISOString().slice(0,10), status: "Baru" }
+                { id: 2, tanggal: "2026-10-01", akseptorNik: "3278014508920001", petugasNama: DEFAULT_DOKTER_NAMA, obatNama: "Cyclofem Injek 1 Bulan", anamnesa: "TD 120/80 mmHg", tglKembali: new Date().toISOString().slice(0,10), status: "Baru" }
             ]));
             const [absensi, setAbsensi] = React.useState(() => getStorage('absensi', [
                 { tanggal: "2026-10-08", jam: "08:00", pegawai: "apt. Mardin, S.Farm", pekerjaan: "Membuka Apotek", status: "Masuk" },
@@ -358,41 +330,11 @@
                         const initId = modalConfig.data?.patientId || patients[0]?.id || '';
                         setSelectedPatientId(initId);
                         const found = (patients || []).find(p => p.id === Number(initId));
-                        setPatientQuery(found ? `${found.nama} (RM: ${found.noRM})` : (modalConfig.data?.namaPenanya || ''));
+setPatientQuery(found ? `${found.nama} (RM: ${found.noRM})` : (modalConfig.data?.namaPenanya || ''));
                         setShowPatientDropdown(false);
                     }
                 }
             }, [modalConfig, akseptor, patients]);
-
-            // Sinkronisasi Realtime dengan Supabase untuk Data Akseptor
-            React.useEffect(() => {
-                const checkSupabaseReady = setInterval(() => {
-                    if (window._supabase) {
-                        clearInterval(checkSupabaseReady);
-                        
-                        // Tarik data awal dari Supabase
-                        window._supabase.from('data_akseptor').select('*').then(res => {
-                            if (!res.error && res.data && res.data.length > 0) {
-                                setAkseptor(res.data);
-                                setStorage('akseptor', res.data);
-                            }
-                        });
-
-                        // Realtime listener
-                        window._supabase
-                            .channel('public:data_akseptor')
-                            .on('postgres_changes', { event: '*', schema: 'public', table: 'data_akseptor' }, payload => {
-                                window._supabase.from('data_akseptor').select('*').then(res => {
-                                    if (!res.error && res.data) {
-                                        setAkseptor(res.data);
-                                        setStorage('akseptor', res.data);
-                                    }
-                                });
-                            })
-                            .subscribe();
-                    }
-                }, 500);
-            }, []);
 
             const modalFilteredAkseptors = (akseptor || []).filter(a => {
                 if (!akseptorQuery || akseptorQuery.trim() === '') return true;
@@ -419,7 +361,7 @@
             const [searchAkseptor, setSearchAkseptor] = React.useState('');
             const [searchKunjungan, setSearchKunjungan] = React.useState('');
             const [startTglKunjungan, setStartTglKunjungan] = React.useState('');
-            const [selectedKunjunganIds, setSelectedKunjunganIds] = React.useState([]);
+const [selectedKunjunganIds, setSelectedKunjunganIds] = React.useState([]);
             const [endTglKunjungan, setEndTglKunjungan] = React.useState('');
             const [searchPasien, setSearchPasien] = React.useState('');
             const [searchKonseling, setSearchKonseling] = React.useState('');
@@ -504,35 +446,36 @@
                 if (type === 'home') setHomeRecords(homeRecords.filter(x => x.id !== id));
                 if (type === 'pio') setPioRecords(pioRecords.filter(x => x.id !== id));
             };
+// Fungsi untuk memilih/batal pilih semua transaksi yang sedang tampil
+const handleSelectAllKunjungan = (e) => {
+    if (e.target.checked) {
+        const allIds = filteredKunjunganList.map(item => item.id);
+        setSelectedKunjunganIds(allIds);
+    } else {
+        setSelectedKunjunganIds([]);
+    }
+};
 
-            const handleSelectAllKunjungan = (e) => {
-                if (e.target.checked) {
-                    const allIds = filteredKunjunganList.map(item => item.id);
-                    setSelectedKunjunganIds(allIds);
-                } else {
-                    setSelectedKunjunganIds([]);
-                }
-            };
+// Fungsi untuk memilih/batal pilih satu baris transaksi
+const handleToggleSelectKunjungan = (id) => {
+    if (selectedKunjunganIds.includes(id)) {
+        setSelectedKunjunganIds(selectedKunjunganIds.filter(item => item !== id));
+    } else {
+        setSelectedKunjunganIds([...selectedKunjunganIds, id]);
+    }
+};
 
-            const handleToggleSelectKunjungan = (id) => {
-                if (selectedKunjunganIds.includes(id)) {
-                    setSelectedKunjunganIds(selectedKunjunganIds.filter(item => item !== id));
-                } else {
-                    setSelectedKunjunganIds([...selectedKunjunganIds, id]);
-                }
-            };
-
-            const handleDeleteSelectedKunjungan = () => {
-                if (selectedKunjunganIds.length === 0) {
-                    alert("Pilih setidaknya satu data transaksi yang ingin dihapus.");
-                    return;
-                }
-                if (confirm(`Apakah Anda yakin ingin menghapus ${selectedKunjunganIds.length} data transaksi KB yang dipilih?`)) {
-                    setKunjunganKb(kunjunganKb.filter(item => !selectedKunjunganIds.includes(item.id)));
-                    setSelectedKunjunganIds([]);
-                }
-            };
-
+// Fungsi untuk menghapus semua data transaksi yang dicentang
+const handleDeleteSelectedKunjungan = () => {
+    if (selectedKunjunganIds.length === 0) {
+        alert("Pilih setidaknya satu data transaksi yang ingin dihapus.");
+        return;
+    }
+    if (confirm(`Apakah Anda yakin ingin menghapus ${selectedKunjunganIds.length} data transaksi KB yang dipilih?`)) {
+        setKunjunganKb(kunjunganKb.filter(item => !selectedKunjunganIds.includes(item.id)));
+        setSelectedKunjunganIds([]);
+    }
+};
             const handleFormSubmit = (e) => {
                 e.preventDefault();
                 const form = e.target;
@@ -624,44 +567,43 @@
                 XLSX.writeFile(wb, "template_akseptor_kb.xlsx");
             };
             const exportTemplateObatKb = () => {
-                const ws = XLSX.utils.json_to_sheet([{ nama: "Cyclofem Injek 1 Bulan", komposisi: "Hormonal Kombinasi", harga: 35000 }]);
-                const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Template_Obat_KB");
-                XLSX.writeFile(wb, "template_obat_kb.xlsx");
-            };
+    const ws = XLSX.utils.json_to_sheet([{ nama: "Cyclofem Injek 1 Bulan", komposisi: "Hormonal Kombinasi", harga: 35000 }]);
+    const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Template_Obat_KB");
+    XLSX.writeFile(wb, "template_obat_kb.xlsx");
+};
 
-            const importObatKbExcel = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (evt) => {
-                    try {
-                        const data = new Uint8Array(evt.target.result);
-                        const workbook = XLSX.read(data, {type: 'array'});
-                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                        const json = XLSX.utils.sheet_to_json(sheet);
-                        if (json && json.length > 0) {
-                            const newObatList = [...obatKb];
-                            let addedCount = 0;
-                            json.forEach((row, idx) => {
-                                const namaObat = String(row.nama || '').trim();
-                                if (namaObat && !newObatList.some(o => o.nama.toLowerCase() === namaObat.toLowerCase())) {
-                                    newObatList.push({
-                                        id: Date.now() + idx, 
-                                        nama: namaObat, 
-                                        komposisi: String(row.komposisi || '-'), 
-                                        harga: parseFloat(row.harga) || 0
-                                    });
-                                    addedCount++;
-                                }
-                            });
-                            setObatKb(newObatList);
-                            alert(`Berhasil mengimpor ${addedCount} data obat/alkon baru!`);
-                        }
-                    } catch(err) { alert("Gagal membaca file Excel Obat KB."); }
-                };
-                reader.readAsArrayBuffer(file);
-            };
-
+const importObatKbExcel = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+        try {
+            const data = new Uint8Array(evt.target.result);
+            const workbook = XLSX.read(data, {type: 'array'});
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const json = XLSX.utils.sheet_to_json(sheet);
+            if (json && json.length > 0) {
+                const newObatList = [...obatKb];
+                let addedCount = 0;
+                json.forEach((row, idx) => {
+                    const namaObat = String(row.nama || '').trim();
+                    if (namaObat && !newObatList.some(o => o.nama.toLowerCase() === namaObat.toLowerCase())) {
+                        newObatList.push({
+                            id: Date.now() + idx, 
+                            nama: namaObat, 
+                            komposisi: String(row.komposisi || '-'), 
+                            harga: parseFloat(row.harga) || 0
+                        });
+                        addedCount++;
+                    }
+                });
+                setObatKb(newObatList);
+                alert(`Berhasil mengimpor ${addedCount} data obat/alkon baru!`);
+            }
+        } catch(err) { alert("Gagal membaca file Excel Obat KB."); }
+    };
+    reader.readAsArrayBuffer(file);
+};
             const importAkseptorExcel = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -692,144 +634,141 @@
                 reader.readAsArrayBuffer(file);
             };
          
-            const exportTemplateTransaksiKb = () => {
-                const ws = XLSX.utils.json_to_sheet([{ 
-                    tanggal: "2026-06-01", 
-                    "Nama Akseptor": "ALIYAH", 
-                    petugasNama: DEFAULT_BIDAN_NAMA, 
-                    obatNama: "Cyclofem Injek 1 Bulan", 
-                    anamnesa: "TD 120/80 mmHg", 
-                    tglKembali: "2026-07-01", 
-                    status: "Baru" 
-                }]);
-                const wb = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(wb, ws, "Template Transaksi KB");
-                XLSX.writeFile(wb, "template_transaksi_kb.xlsx");
-            };
+const exportTemplateTransaksiKb = () => {
+    const ws = XLSX.utils.json_to_sheet([{ 
+        tanggal: "2026-06-01", 
+        "Nama Akseptor": "ALIYAH", 
+        petugasNama: DEFAULT_DOKTER_NAMA, 
+        obatNama: "Cyclofem Injek 1 Bulan", 
+        anamnesa: "TD 120/80 mmHg", 
+        tglKembali: "2026-07-01", 
+        status: "Baru" 
+    }]);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Template Transaksi KB");
+    XLSX.writeFile(wb, "template_transaksi_kb.xlsx");
+};
 
-            const exportTemplatePasien = () => {
-                const ws = XLSX.utils.json_to_sheet([
-                    { noRM: "RM-002", nama: "Contoh Pasien", tglLahir: "1991-01-01", jk: "Perempuan", alamat: "Jl. Sehat No. 5", telepon: "08123456789", alergi: "Tidak ada", diagnosa: "Demam" }
-                ]);
-                const wb = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(wb, ws, "Template Pasien");
-                XLSX.writeFile(wb, "template_pasien.xlsx");
-            };
+const exportTemplatePasien = () => {
+    const ws = XLSX.utils.json_to_sheet([
+        { noRM: "RM-002", nama: "Contoh Pasien", tglLahir: "1991-01-01", jk: "Perempuan", alamat: "Jl. Sehat No. 5", telepon: "08123456789", alergi: "Tidak ada", diagnosa: "Demam" }
+    ]);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Template Pasien");
+    XLSX.writeFile(wb, "template_pasien.xlsx");
+}; const importPasienExcel = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-            const importPasienExcel = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+        try {
+            const data = new Uint8Array(evt.target.result);
+            const workbook = XLSX.read(data, { type: 'array', cellDates: true });
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const json = XLSX.utils.sheet_to_json(sheet);
 
-                const reader = new FileReader();
-                reader.onload = (evt) => {
-                    try {
-                        const data = new Uint8Array(evt.target.result);
-                        const workbook = XLSX.read(data, { type: 'array', cellDates: true });
-                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                        const json = XLSX.utils.sheet_to_json(sheet);
+            if (json && json.length > 0) {
+                const formatted = json.map((row, idx) => ({
+                    id: Date.now() + idx,
+                    noRM: String(row.noRM || row['No RM'] || `RM-${Math.floor(100 + Math.random() * 900)}`),
+                    nama: String(row.nama || row['Nama Pasien'] || 'Tanpa Nama').trim(),
+                    tglLahir: String(row.tglLahir || row['Tanggal Lahir'] || '2000-01-01').substring(0, 10),
+                    jk: String(row.jk || row['Jenis Kelamin'] || 'Perempuan'),
+                    alamat: String(row.alamat || row['Alamat'] || '-'),
+                    telepon: String(row.telepon || row['Telepon'] || '-'),
+                    alergi: String(row.alergi || row['Alergi'] || 'Tidak ada'),
+                    diagnosa: String(row.diagnosa || row['Diagnosa'] || '-')
+                })).filter(x => x.nama);
 
-                        if (json && json.length > 0) {
-                            const formatted = json.map((row, idx) => ({
-                                id: Date.now() + idx,
-                                noRM: String(row.noRM || row['No RM'] || `RM-${Math.floor(100 + Math.random() * 900)}`),
-                                nama: String(row.nama || row['Nama Pasien'] || 'Tanpa Nama').trim(),
-                                tglLahir: String(row.tglLahir || row['Tanggal Lahir'] || '2000-01-01').substring(0, 10),
-                                jk: String(row.jk || row['Jenis Kelamin'] || 'Perempuan'),
-                                alamat: String(row.alamat || row['Alamat'] || '-'),
-                                telepon: String(row.telepon || row['Telepon'] || '-'),
-                                alergi: String(row.alergi || row['Alergi'] || 'Tidak ada'),
-                                diagnosa: String(row.diagnosa || row['Diagnosa'] || '-')
-                            })).filter(x => x.nama);
+                if (formatted.length > 0) {
+                    setPasien([...pasien, ...formatted]);
+                    alert(`Berhasil mengimpor ${formatted.length} data pasien!`);
+                } else {
+                    alert("Gagal mengimpor: Format data pasien tidak valid.");
+                }
+            }
+        } catch (err) {
+            alert("Gagal membaca file Excel Data Pasien.");
+        }
+    };
+    reader.readAsArrayBuffer(file);
+};
+          const importTransaksiKbExcel = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const isKoreksiChecked = document.getElementById('chkKoreksiTanggal')?.checked || false;
 
-                            if (formatted.length > 0) {
-                                setPatients([...patients, ...formatted]);
-                                alert(`Berhasil mengimpor ${formatted.length} data pasien!`);
-                            } else {
-                                alert("Gagal mengimpor: Format data pasien tidak valid.");
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+        try {
+            const data = new Uint8Array(evt.target.result);
+            const workbook = XLSX.read(data, {type: 'array', cellDates: true});
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const json = XLSX.utils.sheet_to_json(sheet);
+            
+            if (json && json.length > 0) {
+                const formatted = json.map((row, idx) => {
+                    const namaAkseptorInput = String(row['Nama Akseptor'] || row.namaAkseptor || row.nama || '').trim();
+                    const foundAkseptor = (akseptor || []).find(a => (a.nama || '').toLowerCase() === namaAkseptorInput.toLowerCase());
+                    
+                    let rawTanggal = row.tanggal || row.Tanggal || new Date();
+                    let rawTglKembali = row.tglKembali || row['Tanggal Kembali'] || '';
+
+                    const processDate = (val) => {
+                        if (!val) return '';
+                        let d = null;
+                        if (val instanceof Date) {
+                            d = new Date(val.getTime());
+                        } else if (typeof val === 'number') {
+                            const parsedCode = XLSX.SSF.parse_date_code(val);
+                            if (parsedCode) d = new Date(parsedCode.y, parsedCode.m - 1, parsedCode.d);
+                        } else {
+                            const str = String(val).trim().substring(0, 10);
+                            const parts = str.split(/[-/]/);
+                            if (parts.length === 3) {
+                                d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
                             }
                         }
-                    } catch (err) {
-                        alert("Gagal membaca file Excel Data Pasien.");
-                    }
-                };
-                reader.readAsArrayBuffer(file);
-            };
 
-            const importTransaksiKbExcel = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
+                        if (d && !isNaN(d.getTime())) {
+                            if (isKoreksiChecked) {
+                                d.setDate(d.getDate() + 1);
+                            }
+                            const y = d.getFullYear();
+                            const m = String(d.getMonth() + 1).padStart(2, '0');
+                            const day = String(d.getDate()).padStart(2, '0');
+                            return `${y}-${m}-${day}`;
+                        }
+                        return String(val).substring(0, 10);
+                    };
+
+                    return {
+                        id: Date.now() + idx, 
+                        tanggal: processDate(rawTanggal), 
+                        akseptorNik: foundAkseptor ? foundAkseptor.nik : '', 
+                        petugasNama: String(row.petugasNama || row['Nama Petugas'] || DEFAULT_DOKTER_NAMA), 
+                        obatNama: String(row.obatNama || row['Nama Obat'] || obatKb[0]?.nama || ''), 
+                        anamnesa: String(row.anamnesa || row.Anamnesa || ''), 
+                        tglKembali: processDate(rawTglKembali), 
+                        status: String(row.status || row.Status || 'Baru')
+                    };
+                }).filter(x => x.akseptorNik);
                 
-                const isKoreksiChecked = document.getElementById('chkKoreksiTanggal')?.checked || false;
-
-                const reader = new FileReader();
-                reader.onload = (evt) => {
-                    try {
-                        const data = new Uint8Array(evt.target.result);
-                        const workbook = XLSX.read(data, {type: 'array', cellDates: true});
-                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                        const json = XLSX.utils.sheet_to_json(sheet);
-                        
-                        if (json && json.length > 0) {
-                            const formatted = json.map((row, idx) => {
-                                const namaAkseptorInput = String(row['Nama Akseptor'] || row.namaAkseptor || row.nama || '').trim();
-                                const foundAkseptor = (akseptor || []).find(a => (a.nama || '').toLowerCase() === namaAkseptorInput.toLowerCase());
-                                
-                                let rawTanggal = row.tanggal || row.Tanggal || new Date();
-                                let rawTglKembali = row.tglKembali || row['Tanggal Kembali'] || '';
-
-                                const processDate = (val) => {
-                                    if (!val) return '';
-                                    let d = null;
-                                    if (val instanceof Date) {
-                                        d = new Date(val.getTime());
-                                    } else if (typeof val === 'number') {
-                                        const parsedCode = XLSX.SSF.parse_date_code(val);
-                                        if (parsedCode) d = new Date(parsedCode.y, parsedCode.m - 1, parsedCode.d);
-                                    } else {
-                                        const str = String(val).trim().substring(0, 10);
-                                        const parts = str.split(/[-/]/);
-                                        if (parts.length === 3) {
-                                            d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-                                        }
-                                    }
-
-                                    if (d && !isNaN(d.getTime())) {
-                                        if (isKoreksiChecked) {
-                                            d.setDate(d.getDate() + 1);
-                                        }
-                                        const y = d.getFullYear();
-                                        const m = String(d.getMonth() + 1).padStart(2, '0');
-                                        const day = String(d.getDate()).padStart(2, '0');
-                                        return `${y}-${m}-${day}`;
-                                    }
-                                    return String(val).substring(0, 10);
-                                };
-
-                                return {
-                                    id: Date.now() + idx, 
-                                    tanggal: processDate(rawTanggal), 
-                                    akseptorNik: foundAkseptor ? foundAkseptor.nik : '', 
-                                    petugasNama: String(row.petugasNama || row['Nama Petugas'] || DEFAULT_BIDAN_NAMA), 
-                                    obatNama: String(row.obatNama || row['Nama Obat'] || obatKb[0]?.nama || ''), 
-                                    anamnesa: String(row.anamnesa || row.Anamnesa || ''), 
-                                    tglKembali: processDate(rawTglKembali), 
-                                    status: String(row.status || row.Status || 'Baru')
-                                };
-                            }).filter(x => x.akseptorNik);
-                            
-                            if (formatted.length > 0) {
-                                setKunjunganKb([...kunjunganKb, ...formatted]);
-                                alert(`Berhasil mengimpor ${formatted.length} data transaksi KB!`);
-                            } else {
-                                alert("Gagal mengimpor: Pastikan Nama Akseptor di Excel sudah terdaftar di Data Akseptor.");
-                            }
-                        }
-                    } catch(err) { 
-                        alert("Gagal membaca file Excel Transaksi KB."); 
-                    }
-                };
-                reader.readAsArrayBuffer(file);
-            };
+                if (formatted.length > 0) {
+                    setKunjunganKb([...kunjunganKb, ...formatted]);
+                    alert(`Berhasil mengimpor ${formatted.length} data transaksi KB!`);
+                } else {
+                    alert("Gagal mengimpor: Pastikan Nama Akseptor di Excel sudah terdaftar di Data Akseptor.");
+                }
+            }
+        } catch(err) { 
+            alert("Gagal membaca file Excel Transaksi KB."); 
+        }
+    };
+    reader.readAsArrayBuffer(file);
+};
 
             const exportLaporanExcel = (dataArray, filename) => {
                 const ws = XLSX.utils.json_to_sheet(dataArray);
@@ -863,23 +802,23 @@
             });
 
             const filteredKunjunganList = kunjunganKb.filter(k => {
-                const ak = akseptor.find(a => a.nik === k.akseptorNik);
-                const namaAk = ak ? ak.nama : '';
-                const matchSearch = searchKunjungan === '' || 
-                    namaAk.toLowerCase().includes(searchKunjungan.toLowerCase()) ||
-                    k.akseptorNik.includes(searchKunjungan) ||
-                    k.obatNama.toLowerCase().includes(searchKunjungan.toLowerCase()) ||
-                    k.petugasNama.toLowerCase().includes(searchKunjungan.toLowerCase());
+    const ak = akseptor.find(a => a.nik === k.akseptorNik);
+    const namaAk = ak ? ak.nama : '';
+    const matchSearch = searchKunjungan === '' || 
+        namaAk.toLowerCase().includes(searchKunjungan.toLowerCase()) ||
+        k.akseptorNik.includes(searchKunjungan) ||
+        k.obatNama.toLowerCase().includes(searchKunjungan.toLowerCase()) ||
+        k.petugasNama.toLowerCase().includes(searchKunjungan.toLowerCase());
 
-                let matchDate = true;
-                if (startTglKunjungan && k.tanggal < startTglKunjungan) matchDate = false;
-                if (endTglKunjungan && k.tanggal > endTglKunjungan) matchDate = false;
+    let matchDate = true;
+    if (startTglKunjungan && k.tanggal < startTglKunjungan) matchDate = false;
+    if (endTglKunjungan && k.tanggal > endTglKunjungan) matchDate = false;
 
-                return matchSearch && matchDate;
-            }).sort((a, b) => {
-                return new Date(b.tanggal) - new Date(a.tanggal);
-            });
-
+    return matchSearch && matchDate;
+}).sort((a, b) => {
+    // Mengurutkan dari tanggal terbaru ke tanggal terlama (Descending)
+    return new Date(b.tanggal) - new Date(a.tanggal);
+});
             const filteredPatients = patients.filter(p => {
               return searchPasien === '' ||
               p.nama.toLowerCase().includes(searchPasien.toLowerCase()) ||
@@ -1933,248 +1872,250 @@
                             {activeTab === 'layanan_kb' && (
                                 <div className="space-y-4">
                                    {kbSubTab === 'akseptor' && (
-                                       <Card>
-                                           <div className="flex flex-wrap justify-between items-center mb-6 gap-2">
-                                               <div className="flex items-center gap-3">
-                                                   <h3 className="font-bold text-lg">Data Akseptor KB</h3>
-                                                   <div className="relative">
-                                                       <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"><i className="fa-solid fa-search"></i></span>
-                                                       <input 
-                                                           type="text" 
-                                                           placeholder="Cari Nama / NIK / Suami..." 
-                                                           value={searchAkseptor} 
-                                                           onChange={(e) => setSearchAkseptor(e.target.value)} 
-                                                           className="pl-9 pr-4 py-1.5 border rounded-xl text-xs bg-white w-56 focus:outline-none focus:ring-2 focus:ring-emerald-500" 
-                                                       />
-                                                   </div>
-                                               </div>
-                                               <div className="flex gap-2 flex-wrap">
-                                                   <Button variant="secondary" icon="fa-solid fa-file-excel" onClick={exportTemplateAkseptor}>Export Template</Button>
-                                                   <label className="bg-emerald-600 text-white px-3 py-2 rounded-xl text-xs md:text-sm font-medium cursor-pointer hover:bg-emerald-700 flex items-center gap-1.5 shadow-sm">
-                                                       <i className="fa-solid fa-upload"></i> Import Akseptor
-                                                       <input type="file" accept=".xlsx, .xls, .csv" onChange={importAkseptorExcel} className="hidden" />
-                                                   </label>
-                                                   <Button icon="fa-solid fa-user-plus" onClick={() => setModalConfig({isOpen: true, type: 'akseptor', data: null})}>Tambah Akseptor</Button>
-                                               </div>
-                                           </div>
-                                           <div className="overflow-x-auto"><table className="w-full text-left text-sm">
-                                               <thead>
-                                                   <tr className="border-b bg-slate-50 text-slate-600">
-                                                       <th className="p-3">NIK</th>
-                                                       <th 
-                                                           className="p-3 cursor-pointer hover:bg-slate-100 select-none"
-                                                           onClick={() => setAkseptorSortOrder(akseptorSortOrder === 'asc' ? 'desc' : 'asc')}
-                                                           title="Klik untuk mengurutkan abjad"
-                                                       >
-                                                           Nama Akseptor <i className={`fa-solid fa-sort-${akseptorSortOrder === 'asc' ? 'up' : 'down'} ml-1 text-emerald-600`}></i>
-                                                       </th>
-                                                       <th className="p-3">Umur</th>
-                                                       <th className="p-3">Suami</th>
-                                                       <th className="p-3">Alamat</th>
-                                                       <th className="p-3 text-center">Aksi</th>
-                                                   </tr>
-                                               </thead>
-                                               <tbody>
-                                                   {(() => {
-                                                       const sortedAkseptor = [...filteredAkseptor];
-                                                       sortedAkseptor.sort((a, b) => {
-                                                           const nameA = (a.nama || '').toLowerCase();
-                                                           const nameB = (b.nama || '').toLowerCase();
-                                                           if (akseptorSortOrder === 'asc') {
-                                                               return nameA.localeCompare(nameB);
-                                                           } else {
-                                                               return nameB.localeCompare(nameA);
-                                                           }
-                                                       });
+    <Card>
+        <div className="flex flex-wrap justify-between items-center mb-6 gap-2">
+            <div className="flex items-center gap-3">
+                <h3 className="font-bold text-lg">Data Akseptor KB</h3>
+                <div className="relative">
+                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"><i className="fa-solid fa-search"></i></span>
+                    <input 
+                        type="text" 
+                        placeholder="Cari Nama / NIK / Suami..." 
+                        value={searchAkseptor} 
+                        onChange={(e) => setSearchAkseptor(e.target.value)} 
+                        className="pl-9 pr-4 py-1.5 border rounded-xl text-xs bg-white w-56 focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                    />
+                </div>
+            </div>
+            <div className="flex gap-2 flex-wrap">
+                <Button variant="secondary" icon="fa-solid fa-file-excel" onClick={exportTemplateAkseptor}>Export Template</Button>
+                <label className="bg-emerald-600 text-white px-3 py-2 rounded-xl text-xs md:text-sm font-medium cursor-pointer hover:bg-emerald-700 flex items-center gap-1.5 shadow-sm">
+                    <i className="fa-solid fa-upload"></i> Import Akseptor
+                    <input type="file" accept=".xlsx, .xls, .csv" onChange={importAkseptorExcel} className="hidden" />
+                </label>
+                <Button icon="fa-solid fa-user-plus" onClick={() => setModalConfig({isOpen: true, type: 'akseptor', data: null})}>Tambah Akseptor</Button>
+            </div>
+        </div>
+        <div className="overflow-x-auto"><table className="w-full text-left text-sm">
+            <thead>
+                <tr className="border-b bg-slate-50 text-slate-600">
+                    <th className="p-3">NIK</th>
+                    <th 
+                        className="p-3 cursor-pointer hover:bg-slate-100 select-none"
+                        onClick={() => setAkseptorSortOrder(akseptorSortOrder === 'asc' ? 'desc' : 'asc')}
+                        title="Klik untuk mengurutkan abjad"
+                    >
+                        Nama Akseptor <i className={`fa-solid fa-sort-${akseptorSortOrder === 'asc' ? 'up' : 'down'} ml-1 text-emerald-600`}></i>
+                    </th>
+                    <th className="p-3">Umur</th>
+                    <th className="p-3">Suami</th>
+                    <th className="p-3">Alamat</th>
+                    <th className="p-3 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {(() => {
+                    // Salin array hasil filter agar aman di-sort
+                    const sortedAkseptor = [...filteredAkseptor];
+                    sortedAkseptor.sort((a, b) => {
+                        const nameA = (a.nama || '').toLowerCase();
+                        const nameB = (b.nama || '').toLowerCase();
+                        if (akseptorSortOrder === 'asc') {
+                            return nameA.localeCompare(nameB); // A ke Z
+                        } else {
+                            return nameB.localeCompare(nameA); // Z ke A
+                        }
+                    });
 
-                                                       return sortedAkseptor.length === 0 ? (
-                                                           <tr><td colSpan="6" className="p-6 text-center text-slate-400">Tidak ada data akseptor ditemukan.</td></tr>
-                                                       ) : (
-                                                           sortedAkseptor.map(a => (
-                                                               <tr key={a.nik} className="border-b hover:bg-slate-50">
-                                                                   <td className="p-3 font-mono">{a.nik}</td>
-                                                                   <td className="p-3 font-semibold">{a.nama}</td>
-                                                                   <td className="p-3">{hitungUmur(a.tglLahir)} th</td>
-                                                                   <td className="p-3">{a.suami}</td>
-                                                                   <td className="p-3">{a.alamat}</td>
-                                                                   <td className="p-3 flex justify-center gap-2">
-                                                                       <Button variant="purple" icon="fa-solid fa-print" onClick={() => setPrintConfig({
-                                                                           isOpen: true, title: 'Kartu Akseptor', 
-                                                                           content: (
-                                                                               <div className="space-y-2">
-                                                                                   <b>NIK:</b> {a.nik}<br/><b>Nama:</b> {a.nama}<br/><b>Umur:</b> {hitungUmur(a.tglLahir)} tahun<br/><b>Suami:</b> {a.suami}<br/><b>Alamat:</b> {a.alamat}
-                                                                                   <div className="pt-6 flex justify-end">
-                                                                                       <div className="text-center">
-                                                                                           <p>DPM ANIS PRIMA DEWI</p>
-                                                                                           <div className="my-2 flex justify-center"><QRCodeComponent text={QR_CONTENT_BIDAN} size={75} /></div>
-                                                                                           <p className="font-bold underline">{DEFAULT_BIDAN_NAMA}</p>
-                                                                                       </div>
-                                                                                   </div>
-                                                                               </div>
-                                                                           )
-                                                                       })}>Cetak</Button>
-                                                                       <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'akseptor', data: a})}>Edit</Button>
-                                                                       <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('akseptor', a.nik)}>Hapus</Button>
-                                                                   </td>
-                                                               </tr>
-                                                           ))
-                                                       );
-                                                   })()}
-                                               </tbody>
-                                           </table></div>
-                                       </Card>
-                                   )}
+                    return sortedAkseptor.length === 0 ? (
+                        <tr><td colSpan="6" className="p-6 text-center text-slate-400">Tidak ada data akseptor ditemukan.</td></tr>
+                    ) : (
+                        sortedAkseptor.map(a => (
+                            <tr key={a.nik} className="border-b hover:bg-slate-50">
+                                <td className="p-3 font-mono">{a.nik}</td>
+                                <td className="p-3 font-semibold">{a.nama}</td>
+                                <td className="p-3">{hitungUmur(a.tglLahir)} th</td>
+                                <td className="p-3">{a.suami}</td>
+                                <td className="p-3">{a.alamat}</td>
+                                <td className="p-3 flex justify-center gap-2">
+                                    <Button variant="purple" icon="fa-solid fa-print" onClick={() => setPrintConfig({
+                                        isOpen: true, title: 'Kartu Akseptor', 
+                                        content: (
+                                            <div className="space-y-2">
+                                                <b>NIK:</b> {a.nik}<br/><b>Nama:</b> {a.nama}<br/><b>Umur:</b> {hitungUmur(a.tglLahir)} tahun<br/><b>Suami:</b> {a.suami}<br/><b>Alamat:</b> {a.alamat}
+                                                <div className="pt-6 flex justify-end">
+                                                    <div className="text-center">
+                                                        <p>DPM ANIS PRIMA DEWI</p>
+                                                        <div className="my-2 flex justify-center"><QRCodeComponent text={QR_CONTENT_BIDAN} size={75} /></div>
+                                                        <p className="font-bold underline">{DEFAULT_DOKTER_NAMA}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}>Cetak</Button>
+                                    <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'akseptor', data: a})}>Edit</Button>
+                                    <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('akseptor', a.nik)}>Hapus</Button>
+                                </td>
+                            </tr>
+                        ))
+                    );
+                })()}
+            </tbody>
+        </table></div>
+    </Card>
+)}
 
                                    {kbSubTab === 'transaksi' && (
-                                       <Card>
-                                           <div className="flex flex-wrap justify-between items-center mb-6 gap-2">
-                                               <div className="flex flex-wrap gap-2 items-center">
-                                                   <h3 className="font-bold text-lg mr-2">Transaksi Kunjungan KB</h3>
-                                                   <div className="relative">
-                                                       <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"><i className="fa-solid fa-search"></i></span>
-                                                       <input 
-                                                           type="text" 
-                                                           placeholder="Cari Akseptor/NIK/Petugas..." 
-                                                           value={searchKunjungan} 
-                                                           onChange={(e) => setSearchKunjungan(e.target.value)} 
-                                                           className="pl-9 pr-4 py-1.5 border rounded-xl text-xs bg-white w-48 focus:outline-none focus:ring-2 focus:ring-emerald-500" 
-                                                       />
-                                                   </div>
-                                                   <div className="flex items-center gap-1 text-xs">
-                                                       <span className="text-slate-500">Dari:</span>
-                                                       <input type="date" value={startTglKunjungan} onChange={(e) => setStartTglKunjungan(e.target.value)} className="border rounded-xl p-1.5 text-xs bg-white" />
-                                                       <span className="text-slate-500">s.d:</span>
-                                                       <input type="date" value={endTglKunjungan} onChange={(e) => setEndTglKunjungan(e.target.value)} className="border rounded-xl p-1.5 text-xs bg-white" />
-                                                       {(searchKunjungan || startTglKunjungan || endTglKunjungan) && (
-                                                           <button onClick={() => { setSearchKunjungan(''); setStartTglKunjungan(''); setEndTglKunjungan(''); }} className="text-rose-600 hover:text-rose-800 ml-1 font-semibold">Reset</button>
-                                                       )}
-                                                   </div>
-                                               </div>
-                                               <div className="flex gap-2 flex-wrap items-center">
-                                                   {selectedKunjunganIds.length > 0 && (
-                                                       <Button 
-                                                           variant="danger" 
-                                                           icon="fa-solid fa-trash-can" 
-                                                           className="text-xs" 
-                                                           onClick={handleDeleteSelectedKunjungan}
-                                                       >
-                                                           Hapus Terpilih ({selectedKunjunganIds.length})
-                                                       </Button>
-                                                   )}
-                                                   <Button variant="secondary" icon="fa-solid fa-file-excel" onClick={exportTemplateTransaksiKb}>Export Template</Button>
-                                                   
-                                                   <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border text-xs font-medium text-slate-700">
-                                                       <input type="checkbox" id="chkKoreksiTanggal" className="cursor-pointer" />
-                                                       <label htmlFor="chkKoreksiTanggal" className="cursor-pointer">Koreksi Tanggal (+1 Hari)</label>
-                                                   </div>
+    <Card>
+        <div className="flex flex-wrap justify-between items-center mb-6 gap-2">
+            <div className="flex flex-wrap gap-2 items-center">
+                <h3 className="font-bold text-lg mr-2">Transaksi Kunjungan KB</h3>
+                <div className="relative">
+                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"><i className="fa-solid fa-search"></i></span>
+                    <input 
+                        type="text" 
+                        placeholder="Cari Akseptor/NIK/Petugas..." 
+                        value={searchKunjungan} 
+                        onChange={(e) => setSearchKunjungan(e.target.value)} 
+                        className="pl-9 pr-4 py-1.5 border rounded-xl text-xs bg-white w-48 focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                    />
+                </div>
+                <div className="flex items-center gap-1 text-xs">
+                    <span className="text-slate-500">Dari:</span>
+                    <input type="date" value={startTglKunjungan} onChange={(e) => setStartTglKunjungan(e.target.value)} className="border rounded-xl p-1.5 text-xs bg-white" />
+                    <span className="text-slate-500">s.d:</span>
+                    <input type="date" value={endTglKunjungan} onChange={(e) => setEndTglKunjungan(e.target.value)} className="border rounded-xl p-1.5 text-xs bg-white" />
+                    {(searchKunjungan || startTglKunjungan || endTglKunjungan) && (
+                        <button onClick={() => { setSearchKunjungan(''); setStartTglKunjungan(''); setEndTglKunjungan(''); }} className="text-rose-600 hover:text-rose-800 ml-1 font-semibold">Reset</button>
+                    )}
+                </div>
+            </div>
+            <div className="flex gap-2 flex-wrap items-center">
+                {selectedKunjunganIds.length > 0 && (
+                    <Button 
+                        variant="danger" 
+                        icon="fa-solid fa-trash-can" 
+                        className="text-xs" 
+                        onClick={handleDeleteSelectedKunjungan}
+                    >
+                        Hapus Terpilih ({selectedKunjunganIds.length})
+                    </Button>
+                )}
+                <Button variant="secondary" icon="fa-solid fa-file-excel" onClick={exportTemplateTransaksiKb}>Export Template</Button>
+                
+                {/* TAMBAHAN KOTAK CENTANG KOREKSI TANGGAL DI SINI */}
+                <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border text-xs font-medium text-slate-700">
+                    <input type="checkbox" id="chkKoreksiTanggal" className="cursor-pointer" />
+                    <label htmlFor="chkKoreksiTanggal" className="cursor-pointer">Koreksi Tanggal (+1 Hari)</label>
+                </div>
 
-                                                   <label className="bg-emerald-600 text-white px-3 py-2 rounded-xl text-xs md:text-sm font-medium cursor-pointer hover:bg-emerald-700 flex items-center gap-1.5 shadow-sm">
-                                                       <i className="fa-solid fa-upload"></i> Import Transaksi
-                                                       <input type="file" accept=".xlsx, .xls, .csv" onChange={importTransaksiKbExcel} className="hidden" />
-                                                   </label>
-                                                   <Button icon="fa-solid fa-plus" onClick={() => setModalConfig({isOpen: true, type: 'kunjungankb', data: null})}>Catat Transaksi</Button>
-                                               </div>
-                                           </div>
-                                           <div className="overflow-x-auto"><table className="w-full text-left text-sm">
-                                               <thead>
-                                                   <tr className="border-b bg-slate-50 text-slate-600">
-                                                       <th className="p-3 w-10 text-center">
-                                                           <input 
-                                                               type="checkbox" 
-                                                               onChange={handleSelectAllKunjungan}
-                                                               checked={filteredKunjunganList.length > 0 && selectedKunjunganIds.length === filteredKunjunganList.length}
-                                                               title="Pilih Semua"
-                                                               className="cursor-pointer"
-                                                           />
-                                                       </th>
-                                                       <th className="p-3">Tanggal</th>
-                                                       <th className="p-3">Akseptor</th>
-                                                       <th className="p-3">Petugas Input</th>
-                                                       <th className="p-3">Obat/Alkon</th>
-                                                       <th className="p-3">Anamnesa</th>
-                                                       <th className="p-3">Tgl Kembali</th>
-                                                       <th className="p-3 text-center">Aksi</th>
-                                                   </tr>
-                                               </thead>
-                                               <tbody>
-                                                   {filteredKunjunganList.length === 0 ? (
-                                                       <tr><td colSpan="8" className="p-6 text-center text-slate-400">Tidak ada transaksi yang cocok dengan pencarian/filter.</td></tr>
-                                                   ) : (
-                                                       filteredKunjunganList.map(k => {
-                                                           const ak = akseptor.find(x => x.nik === k.akseptorNik);
-                                                           const isChecked = selectedKunjunganIds.includes(k.id);
-                                                           return (
-                                                               <tr key={k.id} className={`border-b hover:bg-slate-50 ${isChecked ? 'bg-emerald-50/50' : ''}`}>
-                                                                   <td className="p-3 text-center">
-                                                                       <input 
-                                                                           type="checkbox" 
-                                                                           checked={isChecked}
-                                                                           onChange={() => handleToggleSelectKunjungan(k.id)}
-                                                                           className="cursor-pointer"
-                                                                       />
-                                                                   </td>
-                                                                   <td className="p-3">{k.tanggal}</td>
-                                                                   <td className="p-3 font-semibold">{ak ? ak.nama : k.akseptorNik}</td>
-                                                                   <td className="p-3 text-blue-700 font-semibold">{k.petugasNama}</td>
-                                                                   <td className="p-3 text-emerald-600">{k.obatNama}</td>
-                                                                   <td className="p-3">{k.anamnesa}</td>
-                                                                   <td className="p-3 font-semibold text-rose-600">{k.tglKembali || '-'}</td>
-                                                                   <td className="p-3 flex justify-center gap-2">
-                                                                       <Button variant="purple" icon="fa-solid fa-print" onClick={() => setPrintConfig({
-                                                                           isOpen: true, 
-                                                                           title: 'Bukti Pelayanan KB', 
-                                                                           content: renderBuktiTransaksiKB(k, ak)
-                                                                       })}>Cetak</Button>
-                                                                       <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'kunjungankb', data: k})}>Edit</Button>
-                                                                       <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('kunjungankb', k.id)}>Hapus</Button>
-                                                                   </td>
-                                                               </tr>
-                                                           );
-                                                       })
-                                                   )}
-                                               </tbody>
-                                           </table></div>
-                                       </Card>
-                                   )}
+                <label className="bg-emerald-600 text-white px-3 py-2 rounded-xl text-xs md:text-sm font-medium cursor-pointer hover:bg-emerald-700 flex items-center gap-1.5 shadow-sm">
+                    <i className="fa-solid fa-upload"></i> Import Transaksi
+                    <input type="file" accept=".xlsx, .xls, .csv" onChange={importTransaksiKbExcel} className="hidden" />
+                </label>
+                <Button icon="fa-solid fa-plus" onClick={() => setModalConfig({isOpen: true, type: 'kunjungankb', data: null})}>Catat Transaksi</Button>
+            </div>
+        </div>
+        <div className="overflow-x-auto"><table className="w-full text-left text-sm">
+            <thead>
+                <tr className="border-b bg-slate-50 text-slate-600">
+                    <th className="p-3 w-10 text-center">
+                        <input 
+                            type="checkbox" 
+                            onChange={handleSelectAllKunjungan}
+                            checked={filteredKunjunganList.length > 0 && selectedKunjunganIds.length === filteredKunjunganList.length}
+                            title="Pilih Semua"
+                            className="cursor-pointer"
+                        />
+                    </th>
+                    <th className="p-3">Tanggal</th>
+                    <th className="p-3">Akseptor</th>
+                    <th className="p-3">Petugas Input</th>
+                    <th className="p-3">Obat/Alkon</th>
+                    <th className="p-3">Anamnesa</th>
+                    <th className="p-3">Tgl Kembali</th>
+                    <th className="p-3 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {filteredKunjunganList.length === 0 ? (
+                    <tr><td colSpan="8" className="p-6 text-center text-slate-400">Tidak ada transaksi yang cocok dengan pencarian/filter.</td></tr>
+                ) : (
+                    filteredKunjunganList.map(k => {
+                        const ak = akseptor.find(x => x.nik === k.akseptorNik);
+                        const isChecked = selectedKunjunganIds.includes(k.id);
+                        return (
+                            <tr key={k.id} className={`border-b hover:bg-slate-50 ${isChecked ? 'bg-emerald-50/50' : ''}`}>
+                                <td className="p-3 text-center">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={isChecked}
+                                        onChange={() => handleToggleSelectKunjungan(k.id)}
+                                        className="cursor-pointer"
+                                    />
+                                </td>
+                                <td className="p-3">{k.tanggal}</td>
+                                <td className="p-3 font-semibold">{ak ? ak.nama : k.akseptorNik}</td>
+                                <td className="p-3 text-blue-700 font-semibold">{k.petugasNama}</td>
+                                <td className="p-3 text-emerald-600">{k.obatNama}</td>
+                                <td className="p-3">{k.anamnesa}</td>
+                                <td className="p-3 font-semibold text-rose-600">{k.tglKembali || '-'}</td>
+                                <td className="p-3 flex justify-center gap-2">
+                                    <Button variant="purple" icon="fa-solid fa-print" onClick={() => setPrintConfig({
+                                        isOpen: true, 
+                                        title: 'Bukti Pelayanan KB', 
+                                        content: renderBuktiTransaksiKB(k, ak)
+                                    })}>Cetak</Button>
+                                    <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'kunjungankb', data: k})}>Edit</Button>
+                                    <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('kunjungankb', k.id)}>Hapus</Button>
+                                </td>
+                            </tr>
+                        );
+                    })
+                )}
+            </tbody>
+        </table></div>
+    </Card>
+)}
 
-                                   {kbSubTab === 'obat' && (
-                                       <Card>
-                                           <div className="flex justify-between items-center mb-6"><h3 className="font-bold text-lg">Data Obat / Alkon KB</h3><Button icon="fa-solid fa-plus" onClick={() => setModalConfig({isOpen: true, type: 'obatkb', data: null})}>Tambah Obat</Button></div>
-                                           <div className="overflow-x-auto"><table className="w-full text-left text-sm">
-                                               <thead><tr className="border-b bg-slate-50 text-slate-600"><th className="p-3">Nama Obat</th><th className="p-3">Komposisi</th><th className="p-3">Harga</th><th className="p-3 text-center">Aksi</th></tr></thead>
-                                               <tbody>{obatKb.map(o => (
-                                                   <tr key={o.id} className="border-b hover:bg-slate-50">
-                                                       <td className="p-3 font-semibold">{o.nama}</td><td className="p-3">{o.komposisi}</td><td className="p-3">Rp {o.harga.toLocaleString('id-ID')}</td>
-                                                       <td className="p-3 flex justify-center gap-2">
-                                                           <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'obatkb', data: o})}>Edit</Button>
-                                                           <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('obatkb', o.id)}>Hapus</Button>
-                                                       </td>
-                                                   </tr>
-                                               ))}</tbody>
-                                           </table></div>
-                                       </Card>
-                                   )}
+                                    {kbSubTab === 'obat' && (
+                                        <Card>
+                                            <div className="flex justify-between items-center mb-6"><h3 className="font-bold text-lg">Data Obat / Alkon KB</h3><Button icon="fa-solid fa-plus" onClick={() => setModalConfig({isOpen: true, type: 'obatkb', data: null})}>Tambah Obat</Button></div>
+                                            <div className="overflow-x-auto"><table className="w-full text-left text-sm">
+                                                <thead><tr className="border-b bg-slate-50 text-slate-600"><th className="p-3">Nama Obat</th><th className="p-3">Komposisi</th><th className="p-3">Harga</th><th className="p-3 text-center">Aksi</th></tr></thead>
+                                                <tbody>{obatKb.map(o => (
+                                                    <tr key={o.id} className="border-b hover:bg-slate-50">
+                                                        <td className="p-3 font-semibold">{o.nama}</td><td className="p-3">{o.komposisi}</td><td className="p-3">Rp {o.harga.toLocaleString('id-ID')}</td>
+                                                        <td className="p-3 flex justify-center gap-2">
+                                                            <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'obatkb', data: o})}>Edit</Button>
+                                                            <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('obatkb', o.id)}>Hapus</Button>
+                                                        </td>
+                                                    </tr>
+                                                ))}</tbody>
+                                            </table></div>
+                                        </Card>
+                                    )}
 
-                                   {kbSubTab === 'petugas' && (
-                                       <Card>
-                                           <div className="flex justify-between items-center mb-6"><h3 className="font-bold text-lg">Data Petugas / Bidan</h3><Button icon="fa-solid fa-user-plus" onClick={() => setModalConfig({isOpen: true, type: 'petugaskb', data: null})}>Tambah Petugas</Button></div>
-                                           <div className="overflow-x-auto"><table className="w-full text-left text-sm">
-                                               <thead><tr className="border-b bg-slate-50 text-slate-600"><th className="p-3">Nama Petugas</th><th className="p-3">Jabatan</th><th className="p-3">No. SIP</th><th className="p-3">Telepon</th><th className="p-3 text-center">Aksi</th></tr></thead>
-                                               <tbody>{petugasKb.map(p => (
-                                                   <tr key={p.id} className="border-b hover:bg-slate-50">
-                                                       <td className="p-3 font-semibold text-emerald-700">{p.nama}</td>
-                                                       <td className="p-3">{p.jabatan}</td>
-                                                       <td className="p-3 font-mono">{p.sip}</td>
-                                                       <td className="p-3">{p.telp}</td>
-                                                       <td className="p-3 flex justify-center gap-2">
-                                                           <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'petugaskb', data: p})}>Edit</Button>
-                                                           <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('petugaskb', p.id)}>Hapus</Button>
-                                                       </td>
-                                                   </tr>
-                                               ))}</tbody>
-                                           </table></div>
-                                       </Card>
-                                   )}
+                                    {kbSubTab === 'petugas' && (
+                                        <Card>
+                                            <div className="flex justify-between items-center mb-6"><h3 className="font-bold text-lg">Data Petugas / Bidan</h3><Button icon="fa-solid fa-user-plus" onClick={() => setModalConfig({isOpen: true, type: 'petugaskb', data: null})}>Tambah Petugas</Button></div>
+                                            <div className="overflow-x-auto"><table className="w-full text-left text-sm">
+                                                <thead><tr className="border-b bg-slate-50 text-slate-600"><th className="p-3">Nama Petugas</th><th className="p-3">Jabatan</th><th className="p-3">No. SIP</th><th className="p-3">Telepon</th><th className="p-3 text-center">Aksi</th></tr></thead>
+                                                <tbody>{petugasKb.map(p => (
+                                                    <tr key={p.id} className="border-b hover:bg-slate-50">
+                                                        <td className="p-3 font-semibold text-emerald-700">{p.nama}</td>
+                                                        <td className="p-3">{p.jabatan}</td>
+                                                        <td className="p-3 font-mono">{p.sip}</td>
+                                                        <td className="p-3">{p.telp}</td>
+                                                        <td className="p-3 flex justify-center gap-2">
+                                                            <Button variant="warning" icon="fa-solid fa-pen" onClick={() => setModalConfig({isOpen: true, type: 'petugaskb', data: p})}>Edit</Button>
+                                                            <Button variant="danger" icon="fa-solid fa-trash" onClick={() => handleDelete('petugaskb', p.id)}>Hapus</Button>
+                                                        </td>
+                                                    </tr>
+                                                ))}</tbody>
+                                            </table></div>
+                                        </Card>
+                                    )}
                                 </div>
                             )}
 
@@ -2231,415 +2172,427 @@
                             )}
 
                             {/* 5. LAPORAN */}
-                            {activeTab === 'laporan' && (
-                                <Card>
-                                    <div className="space-y-6">
-                                        <style>{`
-                                            @media print {
-                                                body * {
-                                                    visibility: hidden !important;
-                                                }
-                                                .no-print, nav, header, sidebar, button, input, select {
-                                                    display: none !important;
-                                                }
-                                                #printable-laporan-area, #printable-laporan-area * {
-                                                    visibility: visible !important;
-                                                }
-                                                #printable-laporan-area {
-                                                    position: absolute !important;
-                                                    left: 0 !important;
-                                                    top: 0 !important;
-                                                    width: 100% !important;
-                                                    margin: 0 !important;
-                                                    padding: 10mm !important;
-                                                    background: white !important;
-                                                    color: black !important;
-                                                }
-                                                @page { 
-                                                    size: ${printPaperSize === 'F4' ? '215mm 330mm' : printPaperSize === 'letter' ? 'letter' : 'A4'} ${printOrientation}; 
-                                                    margin: 10mm; 
-                                                }
-                                                table { 
-                                                    width: 100% !important;
-                                                    border-collapse: collapse !important;
-                                                    page-break-inside: auto; 
-                                                }
-                                                tr { 
-                                                    page-break-inside: avoid !important; 
-                                                    page-break-after: auto !important; 
-                                                }
-                                                thead { 
-                                                    display: table-header-group !important; 
-                                                }
-                                                .signature-section { 
-                                                    page-break-inside: avoid !important; 
-                                                    break-inside: avoid !important; 
-                                                    margin-top: 30px !important;
-                                                }
-                                            }
-                                        `}</style>
+{activeTab === 'laporan' && (
+    <Card>
+        <div className="space-y-6">
+            {/* CSS Cetak Dinamis Sesuai Pilihan Pengguna */}
+            <style>{`
+                @media print {
+                    body * {
+                        visibility: hidden !important;
+                    }
+                    .no-print, nav, header, sidebar, button, input, select {
+                        display: none !important;
+                    }
+                    #printable-laporan-area, #printable-laporan-area * {
+                        visibility: visible !important;
+                    }
+                    #printable-laporan-area {
+                        position: absolute !important;
+                        left: 0 !important;
+                        top: 0 !important;
+                        width: 100% !important;
+                        margin: 0 !important;
+                        padding: 10mm !important;
+                        background: white !important;
+                        color: black !important;
+                    }
+                    @page { 
+                        size: ${printPaperSize === 'F4' ? '215mm 330mm' : printPaperSize === 'letter' ? 'letter' : 'A4'} ${printOrientation}; 
+                        margin: 10mm; 
+                    }
+                    table { 
+                        width: 100% !important;
+                        border-collapse: collapse !important;
+                        page-break-inside: auto; 
+                    }
+                    tr { 
+                        page-break-inside: avoid !important; 
+                        page-break-after: auto !important; 
+                    }
+                    thead { 
+                        display: table-header-group !important; 
+                    }
+                    .signature-section { 
+                        page-break-inside: avoid !important; 
+                        break-inside: avoid !important; 
+                        margin-top: 30px !important;
+                    }
+                }
+            `}</style>
 
-                                        <div className="no-print space-y-4">
-                                            <div className="flex border-b gap-4 font-semibold text-sm">
-                                                <button 
-                                                    className={`pb-2 border-b-2 ${laporanSubTab === 'kunjungan_akseptor' ? 'border-emerald-600 text-emerald-600 font-bold' : 'border-transparent text-slate-500'}`}
-                                                    onClick={() => setLaporanSubTab('kunjungan_akseptor')}
-                                                >
-                                                    Kunjungan Akseptor
-                                                </button>
-                                                <button 
-                                                    className={`pb-2 border-b-2 ${laporanSubTab === 'farmasi_klinis' ? 'border-emerald-600 text-emerald-600 font-bold' : 'border-transparent text-slate-500'}`}
-                                                    onClick={() => setLaporanSubTab('farmasi_klinis')}
-                                                >
-                                                    Farmasi Klinis
-                                                </button>
-                                                <button 
-                                                    className={`pb-2 border-b-2 ${laporanSubTab === 'penggunaan_obat_kb' ? 'border-emerald-600 text-emerald-600 font-bold' : 'border-transparent text-slate-500'}`}
-                                                    onClick={() => setLaporanSubTab('penggunaan_obat_kb')}
-                                                >
-                                                    Penggunaan Obat KB
-                                                </button>
-                                            </div>
+            {/* Navigasi Sub Tab & Panel Kontrol Cetak (Hidden saat cetak) */}
+            <div className="no-print space-y-4">
+                <div className="flex border-b gap-4 font-semibold text-sm">
+                    <button 
+                        className={`pb-2 border-b-2 ${laporanSubTab === 'kunjungan_akseptor' ? 'border-emerald-600 text-emerald-600 font-bold' : 'border-transparent text-slate-500'}`}
+                        onClick={() => setLaporanSubTab('kunjungan_akseptor')}
+                    >
+                        Kunjungan Akseptor
+                    </button>
+                    <button 
+                        className={`pb-2 border-b-2 ${laporanSubTab === 'farmasi_klinis' ? 'border-emerald-600 text-emerald-600 font-bold' : 'border-transparent text-slate-500'}`}
+                        onClick={() => setLaporanSubTab('farmasi_klinis')}
+                    >
+                        Farmasi Klinis
+                    </button>
+                    <button 
+                        className={`pb-2 border-b-2 ${laporanSubTab === 'penggunaan_obat_kb' ? 'border-emerald-600 text-emerald-600 font-bold' : 'border-transparent text-slate-500'}`}
+                        onClick={() => setLaporanSubTab('penggunaan_obat_kb')}
+                    >
+                        Penggunaan Obat KB
+                    </button>
+                </div>
 
-                                            <div className="bg-slate-50 p-4 rounded-xl border space-y-3">
-                                                <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b">
-                                                    <div className="flex flex-wrap items-center gap-3">
-                                                        <span className="text-sm font-semibold text-slate-700">Format Cetak:</span>
-                                                        <select 
-                                                            value={printOrientation} 
-                                                            onChange={(e) => setPrintOrientation(e.target.value)}
-                                                            className="border px-3 py-1.5 rounded-lg text-sm bg-white font-medium text-emerald-700"
-                                                        >
-                                                            <option value="portrait">Potret (Portrait)</option>
-                                                            <option value="landscape">Lanskap (Landscape)</option>
-                                                        </select>
+                {/* Panel Pengaturan Fleksibel Cetak & Filter */}
+                <div className="bg-slate-50 p-4 rounded-xl border space-y-3">
+                    <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b">
+                        <div className="flex flex-wrap items-center gap-3">
+                            <span className="text-sm font-semibold text-slate-700">Format Cetak:</span>
+                            <select 
+                                value={printOrientation} 
+                                onChange={(e) => setPrintOrientation(e.target.value)}
+                                className="border px-3 py-1.5 rounded-lg text-sm bg-white font-medium text-emerald-700"
+                            >
+                                <option value="portrait">Potret (Portrait)</option>
+                                <option value="landscape">Lanskap (Landscape)</option>
+                            </select>
 
-                                                        <select 
-                                                            value={printPaperSize} 
-                                                            onChange={(e) => setPrintPaperSize(e.target.value)}
-                                                            className="border px-3 py-1.5 rounded-lg text-sm bg-white font-medium text-emerald-700"
-                                                        >
-                                                            <option value="A5">Kertas A5</option>
-                                                            <option value="A4">Kertas A4</option>
-                                                            <option value="F4">Kertas F4 / Folio</option>
-                                                            <option value="letter">Kertas Letter</option>
-                                                        </select>
-                                                    </div>
+                            <select 
+                                value={printPaperSize} 
+                                onChange={(e) => setPrintPaperSize(e.target.value)}
+                                className="border px-3 py-1.5 rounded-lg text-sm bg-white font-medium text-emerald-700"
+                            >
+                                <option value="A5">Kertas A5</option>
+                                 <option value="A4">Kertas A4</option>
+                                <option value="F4">Kertas F4 / Folio</option>
+                                <option value="letter">Kertas Letter</option>
+                            </select>
+                        </div>
 
-                                                    <div className="flex items-center gap-2">
-                                                        <Button variant="primary" icon="fa-solid fa-print" className="text-sm shadow-sm" onClick={() => window.print()}>
-                                                            Cetak Dokumen
-                                                        </Button>
-                                                        <Button variant="secondary" icon="fa-solid fa-file-excel" className="text-sm" onClick={() => {
-                                                            const dataToExport = (kunjunganKb || []).map(item => {
-                                                                const acc = (akseptor || []).find(a => a.nik === item.akseptorNik);
-                                                                return {
-                                                                    Tanggal: item.tanggal,
-                                                                    "Nama Akseptor": acc ? acc.nama : item.akseptorNik,
-                                                                    Petugas: item.petugasNama,
-                                                                    "Obat / Alkon": item.obatNama,
-                                                                    Anamnesa: item.anamnesa,
-                                                                    "Tanggal Kembali": item.tglKembali,
-                                                                    Status: item.status
-                                                                };
-                                                            });
-                                                            exportLaporanExcel(dataToExport, `Laporan_${laporanSubTab}`);
-                                                        }}>
-                                                            Excel
-                                                        </Button>
-                                                    </div>
-                                                </div>
+                        <div className="flex items-center gap-2">
+                            <Button variant="primary" icon="fa-solid fa-print" className="text-sm shadow-sm" onClick={() => window.print()}>
+                                Cetak Dokumen
+                            </Button>
+                            <Button variant="secondary" icon="fa-solid fa-file-excel" className="text-sm" onClick={() => {
+                                const dataToExport = (kunjunganKb || []).map(item => {
+                                    const acc = (akseptor || []).find(a => a.nik === item.akseptorNik);
+                                    return {
+                                        Tanggal: item.tanggal,
+                                        "Nama Akseptor": acc ? acc.nama : item.akseptorNik,
+                                        Petugas: item.petugasNama,
+                                        "Obat / Alkon": item.obatNama,
+                                        Anamnesa: item.anamnesa,
+                                        "Tanggal Kembali": item.tglKembali,
+                                        Status: item.status
+                                    };
+                                });
+                                exportLaporanExcel(dataToExport, `Laporan_${laporanSubTab}`);
+                            }}>
+                                Excel
+                            </Button>
+                        </div>
+                    </div>
 
-                                                <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-                                                    <div className="flex flex-wrap items-center gap-2">
-                                                        <span className="text-xs font-semibold text-slate-600">Periode:</span>
-                                                        <select 
-                                                            value={filterPeriode || 'semua'} 
-                                                            onChange={(e) => setFilterPeriode && setFilterPeriode(e.target.value)}
-                                                            className="border px-2.5 py-1 rounded-lg text-xs bg-white"
-                                                        >
-                                                            <option value="semua">Semua Waktu</option>
-                                                            <option value="bulan">Per Bulan</option>
-                                                            <option value="tahun">Per Tahun</option>
-                                                        </select>
+                    {/* Baris Filter & Pencarian Data */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-xs font-semibold text-slate-600">Periode:</span>
+                            <select 
+                                value={filterPeriode || 'semua'} 
+                                onChange={(e) => setFilterPeriode && setFilterPeriode(e.target.value)}
+                                className="border px-2.5 py-1 rounded-lg text-xs bg-white"
+                            >
+                                <option value="semua">Semua Waktu</option>
+                                <option value="bulan">Per Bulan</option>
+                                <option value="tahun">Per Tahun</option>
+                            </select>
 
-                                                        {filterPeriode === 'bulan' && (
-                                                            <input 
-                                                                type="month" 
-                                                                value={filterBulan || ''} 
-                                                                onChange={(e) => setFilterBulan && setFilterBulan(e.target.value)}
-                                                                className="border px-2.5 py-1 rounded-lg text-xs bg-white"
-                                                            />
-                                                        )}
-
-                                                        {filterPeriode === 'tahun' && (
-                                                            <input 
-                                                                type="number" 
-                                                                placeholder="YYYY" 
-                                                                value={filterTahun || ''} 
-                                                                onChange={(e) => setFilterTahun && setFilterTahun(e.target.value)}
-                                                                className="border px-2.5 py-1 rounded-lg text-xs bg-white w-24"
-                                                            />
-                                                        )}
-                                                    </div>
-
-                                                    <div>
-                                                        <input 
-                                                            type="text" 
-                                                            placeholder="Cari data laporan..." 
-                                                            value={typeof searchKunjungan !== 'undefined' ? searchKunjungan : ''} 
-                                                            onChange={(e) => typeof setSearchKunjungan === 'function' && setSearchKunjungan(e.target.value)}
-                                                            className="border px-3 py-1 rounded-lg text-xs bg-white w-60"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id="printable-laporan-area" className="p-2 space-y-6">
-                                            {laporanSubTab === 'kunjungan_akseptor' && (
-                                                <div className="space-y-4 font-serif">
-                                                    <div className="text-center space-y-1 border-b pb-4">
-                                                        <h2 className="text-emerald-800 font-bold text-xl uppercase tracking-wider">DPM ANIS PRIMA DEWI</h2>
-                                                        <p className="text-xs text-slate-700">{DEFAULT_SARANA_ALAMAT}</p>
-                                                        <h4 className="font-semibold text-sm text-emerald-800 pt-2 font-sans">LAPORAN KUNJUNGAN AKSEPTOR KB</h4>
-                                                    </div>
-
-                                                    <div className="overflow-x-auto font-sans">
-                                                        <table className="w-full text-left text-sm border border-collapse">
-                                                            <thead>
-                                                                <tr className="bg-slate-100 border-b">
-                                                                    <th 
-                                                                        className="p-2.5 border cursor-pointer hover:bg-slate-200 transition select-none"
-                                                                        onClick={() => setSortKunjunganOrder(sortKunjunganOrder === 'desc' ? 'asc' : 'desc')}
-                                                                        title="Klik untuk mengubah urutan tanggal"
-                                                                    >
-                                                                        <div className="flex items-center justify-between gap-1">
-                                                                            <span>Tanggal</span>
-                                                                            <i className={`fa-solid fa-arrow-${sortKunjunganOrder === 'desc' ? 'down' : 'up'} text-xs text-emerald-700`}></i>
-                                                                        </div>
-                                                                    </th>
-                                                                    <th className="p-2.5 border">Nama Akseptor</th>
-                                                                    <th className="p-2.5 border">Petugas</th>
-                                                                    <th className="p-2.5 border print:hidden">Obat / Alkon</th>
-                                                                    <th className="p-2.5 border">Anamnesa</th>
-                                                                    <th className="p-2.5 border">Tgl Kembali</th>
-                                                                    <th className="p-2.5 border">Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                {(() => {
-                                                                    const list = (kunjunganKb || []).filter(item => {
-                                                                        if (filterPeriode === 'bulan' && filterBulan) {
-                                                                            if (!item.tanggal || !item.tanggal.startsWith(filterBulan)) return false;
-                                                                        }
-                                                                        if (filterPeriode === 'tahun' && filterTahun) {
-                                                                            if (!item.tanggal || !item.tanggal.startsWith(filterTahun)) return false;
-                                                                        }
-                                                                        if (typeof searchKunjungan !== 'undefined' && searchKunjungan) {
-                                                                            const q = searchKunjungan.toLowerCase();
-                                                                            const acc = (akseptor || []).find(a => a.nik === item.akseptorNik);
-                                                                            const namaAcc = acc ? acc.nama.toLowerCase() : '';
-                                                                            return (item.tanggal || '').includes(q) ||
-                                                                                   namaAcc.includes(q) ||
-                                                                                   (item.obatNama || '').toLowerCase().includes(q) ||
-                                                                                   (item.petugasNama || '').toLowerCase().includes(q);
-                                                                        }
-                                                                        return true;
-                                                                    }).sort((a, b) => {
-                                                                        const dateA = new Date(a.tanggal);
-                                                                        const dateB = new Date(b.tanggal);
-                                                                        return sortKunjunganOrder === 'desc' ? dateB - dateA : dateA - dateB;
-                                                                    });
-
-                                                                    if (list.length === 0) {
-                                                                        return <tr><td colSpan="7" className="p-6 text-center text-slate-400">Tidak ada data kunjungan akseptor pada periode ini.</td></tr>;
-                                                                    }
-
-                                                                    return (
-                                                                        <>
-                                                                            {list.map(item => {
-                                                                                const acc = (akseptor || []).find(a => a.nik === item.akseptorNik);
-                                                                                return (
-                                                                                    <tr key={item.id} className="border-b hover:bg-slate-50">
-                                                                                        <td className="p-2.5 border">{item.tanggal}</td>
-                                                                                        <td className="p-2.5 border font-semibold">{acc ? acc.nama : item.akseptorNik}</td>
-                                                                                        <td className="p-2.5 border">{item.petugasNama}</td>
-                                                                                        <td className="p-2.5 border print:hidden">{item.obatNama}</td>
-                                                                                        <td className="p-2.5 border">{item.anamnesa}</td>
-                                                                                        <td className="p-2.5 border">{item.tglKembali}</td>
-                                                                                        <td className="p-2.5 border">{item.status}</td>
-                                                                                    </tr>
-                                                                                );
-                                                                            })}
-                                                                            <tr className="bg-slate-100 font-bold border-t-2 border-slate-400">
-                                                                                <td colSpan="5" className="p-2.5 border text-right">TOTAL KUNJUNGAN AKSEPTOR:</td>
-                                                                                <td colSpan="2" className="p-2.5 border text-emerald-800 text-base">{list.length} Pasien</td>
-                                                                            </tr>
-                                                                        </>
-                                                                    );
-                                                                })()}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div className="signature-section pt-4 flex justify-end text-sm font-sans">
-                                                        <div className="text-center w-64 space-y-16">
-                                                            <div>
-                                                                <p>Mesuji, ..........................202...,</p>
-                                                                <p className="text-xs text-slate-500">Penanggung Jawab DPM</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="font-bold underline text-slate-900">dr. Anis Prima Dewi</p>
-                                                                <p className="text-xs text-slate-500">SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )}
-
-                                            {laporanSubTab === 'farmasi_klinis' && (
-                                                <div className="space-y-4 font-serif">
-                                                    <KopSuratKlinis />
-                                                    <h4 className="font-semibold text-sm text-emerald-800 pt-2 font-sans border-b pb-2 uppercase tracking-wide">
-                                                        LAPORAN PELAYANAN FARMASI KLINIS
-                                                    </h4>
-                                                    
-                                                    <div className="overflow-x-auto font-sans">
-                                                        <table className="w-full text-left text-sm border border-collapse">
-                                                            <thead>
-                                                                <tr className="bg-slate-100 border-b">
-                                                                    <th className="p-3 border text-center w-12">No</th>
-                                                                    <th className="p-3 border">Jenis Pelayanan Farmasi Klinis</th>
-                                                                    <th className="p-3 border text-center">Jumlah Catatan Pelayanan</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                {(() => {
-                                                                    const cKonseling = konselingRecords?.length || 0;
-                                                                    const cPio = pioRecords?.length || 0;
-                                                                    const cPto = ptoRecords?.length || 0;
-                                                                    const cMeso = mesoRecords?.length || 0;
-                                                                    const cSwamedikasi = swamedikasiRecords?.length || 0;
-                                                                    const cHome = homeRecords?.length || 0;
-                                                                    const totalPelayanan = cKonseling + cPio + cPto + cMeso + cSwamedikasi + cHome;
-
-                                                                    return (
-                                                                        <>
-                                                                            <tr className="border-b"><td className="p-2.5 border text-center">1</td><td className="p-2.5 border">Konseling Obat</td><td className="p-2.5 border text-center font-bold">{cKonseling}</td></tr>
-                                                                            <tr className="border-b"><td className="p-2.5 border text-center">2</td><td className="p-2.5 border">Pelayanan Informasi Obat (PIO)</td><td className="p-2.5 border text-center font-bold">{cPio}</td></tr>
-                                                                            <tr className="border-b"><td className="p-2.5 border text-center">3</td><td className="p-2.5 border">Pemantauan Terapi Obat (PTO)</td><td className="p-2.5 border text-center font-bold">{cPto}</td></tr>
-                                                                            <tr className="border-b"><td className="p-2.5 border text-center">4</td><td className="p-2.5 border">Monitoring Efek Samping Obat (MESO)</td><td className="p-2.5 border text-center font-bold">{cMeso}</td></tr>
-                                                                            <tr className="border-b"><td className="p-2.5 border text-center">5</td><td className="p-2.5 border">Pelayanan Swamedikasi</td><td className="p-2.5 border text-center font-bold">{cSwamedikasi}</td></tr>
-                                                                            <tr className="border-b"><td className="p-2.5 border text-center">6</td><td className="p-2.5 border">Home Pharmacy Care</td><td className="p-2.5 border text-center font-bold">{cHome}</td></tr>
-                                                                            <tr className="bg-slate-100 font-bold border-t-2 border-slate-400">
-                                                                                <td colSpan="2" className="p-3 border text-right">TOTAL JUMLAH PELAYANAN FARMASI KLINIS:</td>
-                                                                                <td className="p-3 border text-center text-emerald-800 text-base">{totalPelayanan} Kegiatan</td>
-                                                                            </tr>
-                                                                        </>
-                                                                    );
-                                                                })()}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div className="signature-section pt-4 flex justify-end text-sm font-sans">
-                                                        <div className="text-center w-64 space-y-16">
-                                                            <div>
-                                                                <p>Mesuji,.....................................202......</p>
-                                                                <p className="text-xs text-slate-500">PIMPINAN APOTEK</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="font-bold underline text-slate-900">apt. Mardin, S.Farm</p>
-                                                                <p className="text-xs text-slate-500">SIPA: 400.7.5.4/256/SIPA/IV.13/MSJ/2026</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )}
-
-                                            {laporanSubTab === 'penggunaan_obat_kb' && (
-                                                <div className="space-y-4 font-serif">
-                                                    <div className="text-center space-y-1 border-b pb-4">
-                                                        <h2 className="text-emerald-800 font-bold text-xl uppercase tracking-wider">DPM ANIS PRIMA DEWI</h2>
-                                                        <p className="text-xs text-slate-700">{DEFAULT_SARANA_ALAMAT}</p>
-                                                        <h4 className="font-semibold text-sm text-emerald-800 pt-2 font-sans">LAPORAN AKUMULASI PENGGUNAAN OBAT / ALKON KB</h4>
-                                                    </div>
-
-                                                    <div className="flex justify-end no-print">
-                                                        <Button 
-                                                            variant="secondary" 
-                                                            className="text-xs" 
-                                                            icon={`fa-solid fa-sort-${obatKbSortOrder === 'desc' ? 'down' : 'up'}`}
-                                                            onClick={() => setObatKbSortOrder && setObatKbSortOrder(obatKbSortOrder === 'desc' ? 'asc' : 'desc')}
-                                                        >
-                                                            Urutkan Jumlah: {obatKbSortOrder === 'desc' ? 'Terbanyak ke Sedikit' : 'Sedikit ke Terbanyak'}
-                                                        </Button>
-                                                    </div>
-
-                                                    <div className="overflow-x-auto font-sans">
-                                                        <table className="w-full text-left text-sm border border-collapse">
-                                                            <thead>
-                                                                <tr className="bg-slate-100 border-b">
-                                                                    <th className="p-2.5 border">Nama Obat / Alkon KB</th>
-                                                                    <th className="p-2.5 border text-center">Jumlah Digunakan / Terpakai</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                {(() => {
-                                                                    let totalAlkon = 0;
-                                                                    const mappedData = (obatKb || []).map(o => {
-                                                                        const count = (kunjunganKb || []).filter(x => {
-                                                                            if (filterPeriode === 'bulan' && filterBulan) return x.obatNama === o.nama && x.tanggal?.startsWith(filterBulan);
-                                                                            if (filterPeriode === 'tahun' && filterTahun) return x.obatNama === o.nama && x.tanggal?.startsWith(filterTahun);
-                                                                            return x.obatNama === o.nama;
-                                                                        }).length;
-                                                                        totalAlkon += count;
-                                                                        return { nama: o.nama, count };
-                                                                    });
-
-                                                                    mappedData.sort((a, b) => {
-                                                                        return (obatKbSortOrder === 'desc') ? b.count - a.count : a.count - b.count;
-                                                                    });
-
-                                                                    return (
-                                                                        <>
-                                                                            {mappedData.map((item, i) => (
-                                                                                <tr key={i} className="border-b hover:bg-slate-50">
-                                                                                    <td className="p-2.5 border">{item.nama}</td>
-                                                                                    <td className="p-2.5 border text-center font-bold text-emerald-800">{item.count}</td>
-                                                                                </tr>
-                                                                            ))}
-                                                                            <tr className="bg-slate-100 font-bold border-t-2 border-slate-400">
-                                                                                <td className="p-2.5 border text-right">TOTAL KESELURUHAN ALKON TERPAKAI:</td>
-                                                                                <td className="p-2.5 border text-center text-emerald-800 text-base">{totalAlkon} Unit</td>
-                                                                            </tr>
-                                                                        </>
-                                                                    );
-                                                                })()}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div className="signature-section pt-4 flex justify-end text-sm font-sans">
-                                                        <div className="text-center w-64 space-y-16">
-                                                            <div>
-                                                                <p>Penanggung Jawab DPM,</p>
-                                                                <p className="text-xs text-slate-500">Dokter Penanggung Jawab</p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="font-bold underline text-slate-900">dr. Anis Prima Dewi</p>
-                                                                <p className="text-xs text-slate-500">SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                </Card>
+                            {filterPeriode === 'bulan' && (
+                                <input 
+                                    type="month" 
+                                    value={filterBulan || ''} 
+                                    onChange={(e) => setFilterBulan && setFilterBulan(e.target.value)}
+                                    className="border px-2.5 py-1 rounded-lg text-xs bg-white"
+                                />
                             )}
 
+                            {filterPeriode === 'tahun' && (
+                                <input 
+                                    type="number" 
+                                    placeholder="YYYY" 
+                                    value={filterTahun || ''} 
+                                    onChange={(e) => setFilterTahun && setFilterTahun(e.target.value)}
+                                    className="border px-2.5 py-1 rounded-lg text-xs bg-white w-24"
+                                />
+                            )}
+                        </div>
+
+                        <div>
+                            <input 
+                                type="text" 
+                                placeholder="Cari data laporan..." 
+                                value={typeof searchKunjungan !== 'undefined' ? searchKunjungan : ''} 
+                                onChange={(e) => typeof setSearchKunjungan === 'function' && setSearchKunjungan(e.target.value)}
+                                className="border px-3 py-1 rounded-lg text-xs bg-white w-60"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* AREA UTAMA DOKUMEN CETAK (PRINTABLE AREA) */}
+            <div id="printable-laporan-area" className="p-2 space-y-6">
+
+                {/* 1. LAPORAN KUNJUNGAN AKSEPTOR */}
+{laporanSubTab === 'kunjungan_akseptor' && (
+    <div className="space-y-4 font-serif">
+        <div className="text-center space-y-1 border-b pb-4">
+            <h2 className="text-emerald-800 font-bold text-xl uppercase tracking-wider">DPM ANIS PRIMA DEWI</h2>
+            <p className="text-xs text-slate-700">{DEFAULT_SARANA_ALAMAT}</p>
+            <h4 className="font-semibold text-sm text-emerald-800 pt-2 font-sans">LAPORAN KUNJUNGAN AKSEPTOR KB</h4>
+        </div>
+
+        <div className="overflow-x-auto font-sans">
+            <table className="w-full text-left text-sm border border-collapse">
+                <thead>
+                    <tr className="bg-slate-100 border-b">
+                        <th 
+                            className="p-2.5 border cursor-pointer hover:bg-slate-200 transition select-none"
+                            onClick={() => setSortKunjunganOrder(sortKunjunganOrder === 'desc' ? 'asc' : 'desc')}
+                            title="Klik untuk mengubah urutan tanggal"
+                        >
+                            <div className="flex items-center justify-between gap-1">
+                                <span>Tanggal</span>
+                                <i className={`fa-solid fa-arrow-${sortKunjunganOrder === 'desc' ? 'down' : 'up'} text-xs text-emerald-700`}></i>
+                            </div>
+                        </th>
+                        <th className="p-2.5 border">Nama Akseptor</th>
+                        <th className="p-2.5 border">Petugas</th>
+                        <th className="p-2.5 border print:hidden">Obat / Alkon</th>
+                        <th className="p-2.5 border">Anamnesa</th>
+                        <th className="p-2.5 border">Tgl Kembali</th>
+                        <th className="p-2.5 border">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {(() => {
+                        const list = (kunjunganKb || []).filter(item => {
+                            if (filterPeriode === 'bulan' && filterBulan) {
+                                if (!item.tanggal || !item.tanggal.startsWith(filterBulan)) return false;
+                            }
+                            if (filterPeriode === 'tahun' && filterTahun) {
+                                if (!item.tanggal || !item.tanggal.startsWith(filterTahun)) return false;
+                            }
+                            if (typeof searchKunjungan !== 'undefined' && searchKunjungan) {
+                                const q = searchKunjungan.toLowerCase();
+                                const acc = (akseptor || []).find(a => a.nik === item.akseptorNik);
+                                const namaAcc = acc ? acc.nama.toLowerCase() : '';
+                                return (item.tanggal || '').includes(q) ||
+                                       namaAcc.includes(q) ||
+                                       (item.obatNama || '').toLowerCase().includes(q) ||
+                                       (item.petugasNama || '').toLowerCase().includes(q);
+                            }
+                            return true;
+                        }).sort((a, b) => {
+                            const dateA = new Date(a.tanggal);
+                            const dateB = new Date(b.tanggal);
+                            return sortKunjunganOrder === 'desc' ? dateB - dateA : dateA - dateB;
+                        });
+
+      
+                                        if (list.length === 0) {
+                                            return <tr><td colSpan="7" className="p-6 text-center text-slate-400">Tidak ada data kunjungan akseptor pada periode ini.</td></tr>;
+                                        }
+
+                                        return (
+                                            <>
+                                                {list.map(item => {
+                                                    const acc = (akseptor || []).find(a => a.nik === item.akseptorNik);
+                                                    return (
+                                                        <tr key={item.id} className="border-b hover:bg-slate-50">
+                                                            <td className="p-2.5 border">{item.tanggal}</td>
+                                                            <td className="p-2.5 border font-semibold">{acc ? acc.nama : item.akseptorNik}</td>
+                                                            <td className="p-2.5 border">{item.petugasNama}</td>
+                                                            <td className="p-2.5 border print:hidden">{item.obatNama}</td>
+                                                            <td className="p-2.5 border">{item.anamnesa}</td>
+                                                            <td className="p-2.5 border">{item.tglKembali}</td>
+                                                            <td className="p-2.5 border">{item.status}</td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                <tr className="bg-slate-100 font-bold border-t-2 border-slate-400">
+                                                    <td colSpan="5" className="p-2.5 border text-right">TOTAL KUNJUNGAN AKSEPTOR:</td>
+                                                    <td colSpan="2" className="p-2.5 border text-emerald-800 text-base">{list.length} Pasien</td>
+                                                </tr>
+                                            </>
+                                        );
+                                    })()}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* Tanda Tangan Dokter PJ DPM */}
+                        <div className="signature-section pt-4 flex justify-end text-sm font-sans">
+                            <div className="text-center w-64 space-y-16">
+                                <div>
+                                    <p>Mesuji, ..........................202...,</p>
+                                    <p className="text-xs text-slate-500">Penanggung Jawab DPM</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold underline text-slate-900">dr. Anis Prima Dewi</p>
+                                    <p className="text-xs text-slate-500">SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* 2. LAPORAN FARMASI KLINIS */}
+                {laporanSubTab === 'farmasi_klinis' && (
+                    <div className="space-y-4 font-serif">
+                        <KopSuratKlinis />
+                        <h4 className="font-semibold text-sm text-emerald-800 pt-2 font-sans border-b pb-2 uppercase tracking-wide">
+                            LAPORAN PELAYANAN FARMASI KLINIS
+                        </h4>
+                        
+                        <div className="overflow-x-auto font-sans">
+                            <table className="w-full text-left text-sm border border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 border-b">
+                                        <th className="p-3 border text-center w-12">No</th>
+                                        <th className="p-3 border">Jenis Pelayanan Farmasi Klinis</th>
+                                        <th className="p-3 border text-center">Jumlah Catatan Pelayanan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {(() => {
+                                        const cKonseling = konselingRecords?.length || 0;
+                                        const cPio = pioRecords?.length || 0;
+                                        const cPto = ptoRecords?.length || 0;
+                                        const cMeso = mesoRecords?.length || 0;
+                                        const cSwamedikasi = swamedikasiRecords?.length || 0;
+                                        const cHome = homeRecords?.length || 0;
+                                        const totalPelayanan = cKonseling + cPio + cPto + cMeso + cSwamedikasi + cHome;
+
+                                        return (
+                                            <>
+                                                <tr className="border-b"><td className="p-2.5 border text-center">1</td><td className="p-2.5 border">Konseling Obat</td><td className="p-2.5 border text-center font-bold">{cKonseling}</td></tr>
+                                                <tr className="border-b"><td className="p-2.5 border text-center">2</td><td className="p-2.5 border">Pelayanan Informasi Obat (PIO)</td><td className="p-2.5 border text-center font-bold">{cPio}</td></tr>
+                                                <tr className="border-b"><td className="p-2.5 border text-center">3</td><td className="p-2.5 border">Pemantauan Terapi Obat (PTO)</td><td className="p-2.5 border text-center font-bold">{cPto}</td></tr>
+                                                <tr className="border-b"><td className="p-2.5 border text-center">4</td><td className="p-2.5 border">Monitoring Efek Samping Obat (MESO)</td><td className="p-2.5 border text-center font-bold">{cMeso}</td></tr>
+                                                <tr className="border-b"><td className="p-2.5 border text-center">5</td><td className="p-2.5 border">Pelayanan Swamedikasi</td><td className="p-2.5 border text-center font-bold">{cSwamedikasi}</td></tr>
+                                                <tr className="border-b"><td className="p-2.5 border text-center">6</td><td className="p-2.5 border">Home Pharmacy Care</td><td className="p-2.5 border text-center font-bold">{cHome}</td></tr>
+                                                <tr className="bg-slate-100 font-bold border-t-2 border-slate-400">
+                                                    <td colSpan="2" className="p-3 border text-right">TOTAL JUMLAH PELAYANAN FARMASI KLINIS:</td>
+                                                    <td className="p-3 border text-center text-emerald-800 text-base">{totalPelayanan} Kegiatan</td>
+                                                </tr>
+                                            </>
+                                        );
+                                    })()}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* Tanda Tangan Apoteker PJ */}
+                        <div className="signature-section pt-4 flex justify-end text-sm font-sans">
+                            <div className="text-center w-64 space-y-16">
+                                <div>
+                                    <p>Mesuji,.....................................202......</p>
+                                    <p className="text-xs text-slate-500">PIMPINAN APOTEK</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold underline text-slate-900">apt. Mardin, S.Farm</p>
+                                    <p className="text-xs text-slate-500">SIPA: 400.7.5.4/256/SIPA/IV.13/MSJ/2026</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* 3. LAPORAN PENGGUNAAN OBAT KB */}
+                {laporanSubTab === 'penggunaan_obat_kb' && (
+                    <div className="space-y-4 font-serif">
+                        <div className="text-center space-y-1 border-b pb-4">
+                            <h2 className="text-emerald-800 font-bold text-xl uppercase tracking-wider">DPM ANIS PRIMA DEWI</h2>
+                            <p className="text-xs text-slate-700">{DEFAULT_SARANA_ALAMAT}</p>
+                            <h4 className="font-semibold text-sm text-emerald-800 pt-2 font-sans">LAPORAN AKUMULASI PENGGUNAAN OBAT / ALKON KB</h4>
+                        </div>
+
+                        <div className="flex justify-end no-print">
+                            <Button 
+                                variant="secondary" 
+                                className="text-xs" 
+                                icon={`fa-solid fa-sort-${obatKbSortOrder === 'desc' ? 'down' : 'up'}`}
+                                onClick={() => setObatKbSortOrder && setObatKbSortOrder(obatKbSortOrder === 'desc' ? 'asc' : 'desc')}
+                            >
+                                Urutkan Jumlah: {obatKbSortOrder === 'desc' ? 'Terbanyak ke Sedikit' : 'Sedikit ke Terbanyak'}
+                            </Button>
+                        </div>
+
+                        <div className="overflow-x-auto font-sans">
+                            <table className="w-full text-left text-sm border border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 border-b">
+                                        <th className="p-2.5 border">Nama Obat / Alkon KB</th>
+                                        <th className="p-2.5 border text-center">Jumlah Digunakan / Terpakai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {(() => {
+                                        let totalAlkon = 0;
+                                        const mappedData = (obatKb || []).map(o => {
+                                            const count = (kunjunganKb || []).filter(x => {
+                                                if (filterPeriode === 'bulan' && filterBulan) return x.obatNama === o.nama && x.tanggal?.startsWith(filterBulan);
+                                                if (filterPeriode === 'tahun' && filterTahun) return x.obatNama === o.nama && x.tanggal?.startsWith(filterTahun);
+                                                return x.obatNama === o.nama;
+                                            }).length;
+                                            totalAlkon += count;
+                                            return { nama: o.nama, count };
+                                        });
+
+                                        mappedData.sort((a, b) => {
+                                            return (obatKbSortOrder === 'desc') ? b.count - a.count : a.count - b.count;
+                                        });
+
+                                        return (
+                                            <>
+                                                {mappedData.map((item, i) => (
+                                                    <tr key={i} className="border-b hover:bg-slate-50">
+                                                        <td className="p-2.5 border">{item.nama}</td>
+                                                        <td className="p-2.5 border text-center font-bold text-emerald-800">{item.count}</td>
+                                                    </tr>
+                                                ))}
+                                                <tr className="bg-slate-100 font-bold border-t-2 border-slate-400">
+                                                    <td className="p-2.5 border text-right">TOTAL KESELURUHAN ALKON TERPAKAI:</td>
+                                                    <td className="p-2.5 border text-center text-emerald-800 text-base">{totalAlkon} Unit</td>
+                                                </tr>
+                                            </>
+                                        );
+                                    })()}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* Tanda Tangan Dokter PJ DPM */}
+                        <div className="signature-section pt-4 flex justify-end text-sm font-sans">
+                            <div className="text-center w-64 space-y-16">
+                                <div>
+                                    <p>Penanggung Jawab DPM,</p>
+                                    <p className="text-xs text-slate-500">Dokter Penanggung Jawab</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold underline text-slate-900">dr. Anis Prima Dewi</p>
+                                    <p className="text-xs text-slate-500">SIP: 400.7.5.4/57/SIPD/IV.14/MSJ/2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    </Card>
+)}
                             {/* 6. BACKUP & RESTORE */}
                             {activeTab === 'backup' && (
                                 <Card className="max-w-xl mx-auto space-y-4">
@@ -2712,6 +2665,7 @@
                                     />
                                 </div>
 
+                                {/* Kolom Pencarian Akseptor KB */}
                                 <div className="relative">
                                     <label className="block text-xs font-semibold mb-1">Cari & Pilih Akseptor KB (Nama / NIK)</label>
                                     <input 
@@ -2790,6 +2744,7 @@
                             <>
                                 <div><label className="block text-xs font-semibold mb-1">Tanggal</label><input type="date" name="tanggal" defaultValue={modalConfig.data?.tanggal || new Date().toISOString().slice(0,10)} required className="w-full border rounded-xl p-2 text-sm" /></div>
                                 
+                                {/* Kolom Pencarian Pasien untuk Konseling */}
                                 <div className="relative">
                                     <label className="block text-xs font-semibold mb-1">Cari & Pilih Pasien (Nama / No. RM)</label>
                                     <input 
@@ -2841,6 +2796,7 @@
                             <>
                                 <div><label className="block text-xs font-semibold mb-1">Tanggal</label><input type="date" name="tanggal" defaultValue={modalConfig.data?.tanggal || new Date().toISOString().slice(0,10)} required className="w-full border rounded-xl p-2 text-sm" /></div>
                                 
+                                {/* Kolom Pencarian Pasien untuk PTO */}
                                 <div className="relative">
                                     <label className="block text-xs font-semibold mb-1">Cari & Pilih Pasien (Nama / No. RM)</label>
                                     <input 
@@ -2901,6 +2857,7 @@
                             <>
                                 <div><label className="block text-xs font-semibold mb-1">Tanggal</label><input type="date" name="tanggal" defaultValue={modalConfig.data?.tanggal || new Date().toISOString().slice(0,10)} required className="w-full border rounded-xl p-2 text-sm" /></div>
                                 
+                                {/* Kolom Pencarian Pasien untuk MESO */}
                                 <div className="relative">
                                     <label className="block text-xs font-semibold mb-1">Cari & Pilih Pasien (Nama / No. RM)</label>
                                     <input 
@@ -2966,6 +2923,7 @@
                             <>
                                 <div><label className="block text-xs font-semibold mb-1">Tanggal Kunjungan</label><input type="date" name="tanggal" defaultValue={modalConfig.data?.tanggal || new Date().toISOString().slice(0,10)} required className="w-full border rounded-xl p-2 text-sm" /></div>
                                 
+                                {/* Kolom Pencarian Pasien untuk Home Care */}
                                 <div className="relative">
                                     <label className="block text-xs font-semibold mb-1">Cari & Pilih Pasien (Nama / No. RM)</label>
                                     <input 
@@ -3019,6 +2977,7 @@
                                     <div><label className="block text-xs font-semibold mb-1">Metode</label><select name="metode" defaultValue={modalConfig.data?.metode || 'Lisan'} className="w-full border rounded-xl p-2 text-sm"><option value="Lisan">Lisan</option><option value="Tertulis">Tertulis</option><option value="Telepon">Telepon</option></select></div>
                                 </div>
                                 
+                                {/* Kolom Pencarian Nama Penanya untuk PIO dari Data Pasien / Ketik Manual */}
                                 <div className="relative">
                                     <label className="block text-xs font-semibold mb-1">Nama Penanya (Pilih dari Pasien atau Ketik Bebas)</label>
                                     <input 
