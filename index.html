@@ -298,8 +298,8 @@
                 { id: 2, nama: DEFAULT_BIDAN_NAMA, jabatan: "Dokter Penanggung Jawab", sip: "SIP-333/2026", telp: "081122334456" }
             ]));
             const [obatKb, setObatKb] = React.useState(() => getStorage('obatkb', [
-                { id: 1, nama: "Cyclofem Injek 1 Bulan", komposisi: "Hormonal Kombinasi", harga: 35000 },
-                { id: 2, nama: "Suntik 3 Bulan", komposisi: "Depo Medroxyprogesterone", harga: 40000 }
+                { id: 1, nama: "Cyclofem Injek 1 Bulan", komposisi: "Medroxyprogesterone acetate 50 mg, estradiol cypionate 10 mg", harga: 40000 },
+                { id: 2, nama: "TRICLOFEM INJ 3BLN", komposisi: "Medroxyprogesterone acetate 150 mg", harga: 40000 }
             ]));
             const [obatKbSortOrder, setObatKbSortOrder] = React.useState('desc');
             const [kunjunganKb, setKunjunganKb] = React.useState(() => getStorage('kunjungankb', [
