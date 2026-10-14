@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>APODOK - Portal Layanan Farklin dan KB</title>
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://kskwdbclkjkavrcibmko.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_VN98zyN3XQslGu_bF_MegA_cJ5qMBLO';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    </script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
